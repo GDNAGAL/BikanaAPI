@@ -1,5 +1,5 @@
 <?php
-$type = "LOCALDB";   //LIVEDB OR TESTDB OR LOCALDB
+$type = "TESTDB";   //LIVEDB OR TESTDB OR LOCALDB
 
 if($type == "LOCALDB"){
 
@@ -7,7 +7,7 @@ if($type == "LOCALDB"){
 
 }elseif($type == "TESTDB"){
 
-  $servername = "localhost"; $username = "u664437076_easy"; $password = "JY6o8n1T@p"; $db = "u664437076_easy";
+  $servername = "localhost"; $username = "u664437076_grocery"; $password = ";9tYHTiD"; $db = "u664437076_grocery";
 
 }elseif($type == "LIVEDB"){
 
