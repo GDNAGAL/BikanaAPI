@@ -1,5 +1,5 @@
 <?php
-$type = "TESTDB";   //LIVEDB OR TESTDB OR LOCALDB
+$type = "LOCALDB";   //LIVEDB OR TESTDB OR LOCALDB
 
 if($type == "LOCALDB"){
 
@@ -19,6 +19,7 @@ if($type == "LOCALDB"){
 
 $allowedOrigins = [
   "http://localhost:3000",
+  "http://localhost",
   "https://royalplay.live", 
 ];
 
