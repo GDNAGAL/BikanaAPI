@@ -12,6 +12,9 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             $CategoryArr = [];
             $CategoryList = mysqli_query($conn, "SELECT * FROM `product_category`");
             while($PCRow = mysqli_fetch_assoc($CategoryList)){
+                $data = explode(',', $PCRow['SmallImage']);
+                $imageData = base64_decode($data[1]);
+                $PCRow['SmallImage'] = $imageData;
                 $CategoryArr[] = $PCRow;
             }
             $data = array ("ProductCategoryList" => $CategoryArr);
