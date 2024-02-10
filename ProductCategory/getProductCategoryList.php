@@ -10,7 +10,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
             $UserID = $LoginUserID;
             $CategoryArr = [];
-            $CategoryList = mysqli_query($conn, "SELECT * FROM `product_category`");
+            $CategoryList = mysqli_query($conn, "SELECT * FROM `product_category` INNER JOIN users ON users.ID = product_category.Created_By");
             while($PCRow = mysqli_fetch_assoc($CategoryList)){
                 $data = explode(',', $PCRow['SmallImage']);
                 $base64Image = 'data:image/ ;base64,' . $PCRow['SmallImage'];
