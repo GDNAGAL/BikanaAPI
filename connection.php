@@ -108,7 +108,7 @@ function setCategoryID($number){
       return $result;
     } else {
       // Handle invalid input
-      return $number;
+      return "Wrong";
     }
 }
 ?>
