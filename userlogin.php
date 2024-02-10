@@ -11,7 +11,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if (mysqli_num_rows($result)==1) {
 		$row = mysqli_fetch_assoc($result);
 		
-			$loginDateTime = date("Y-m-d H:i:s"); 
+			$loginDateTime = $CurrendDateTime; 
 			$row['loginDateTime'] = $loginDateTime;
 			$row['Type'] = "USER";
 			$accesstoken = encrypt(json_encode($row));

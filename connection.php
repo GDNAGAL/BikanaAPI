@@ -49,7 +49,7 @@ date_default_timezone_set("Asia/Calcutta");
 
 $conn = new mysqli($servername, $username, $password, $db);
 $LoginUserID = 0;
-$CurrendDateTime = date('Y-m-d H:m:s');
+$CurrendDateTime = date("Y-m-d H:i:s");
 
 function verifyToken($token){
   
