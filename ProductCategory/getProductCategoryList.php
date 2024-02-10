@@ -16,8 +16,9 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
                 $base64Image = 'data:image/ ;base64,' . $PCRow['SmallImage'];
                 $PCRow['SmallImage'] = $base64Image;
                 $PCRow['CategoryID'] = setCategoryID($PCRow['ID']);
-
+                $PCRow['Created_By'] = $PCRow['Name'];
                 unset($PCRow['ID']);
+                unset($PCRow['Name']);
                 $CategoryArr[] = $PCRow;
             }
             $data = array ("ProductCategoryList" => $CategoryArr);
