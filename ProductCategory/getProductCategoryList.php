@@ -14,7 +14,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             while($PCRow = mysqli_fetch_assoc($CategoryList)){
                 $data = explode(',', $PCRow['SmallImage']);
                 $imageData = base64_decode($data[1]);
-                $PCRow['SmallImage'] = $imageData;
+                $PCRow['SmallImages'] = $imageData;
                 $CategoryArr[] = $PCRow;
             }
             $data = array ("ProductCategoryList" => $CategoryArr);
