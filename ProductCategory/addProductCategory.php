@@ -14,7 +14,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $CategoryName = $_POST['CategoryName'];
             $CategoryDesc = $_POST['CategoryDesc'];
 
-            mysqli_query($conn, "INSERT INTO `product_category`(`CategoryName`, `CategoryDesc`, `SmallImage`, `Created_At`, `Modified_At`) VALUES ('$CategoryName','$CategoryDesc','$encodedCategoryIcon','$CurrendDateTime','$CurrendDateTime')");
+            mysqli_query($conn, "INSERT INTO `product_category`(`CategoryName`, `CategoryDesc`, `SmallImage`, `Created_By`, `Created_At`, `Modified_At`) VALUES ('$CategoryName','$CategoryDesc','$encodedCategoryIcon','$UserID','$CurrendDateTime','$CurrendDateTime')");
             $data = array ("Message" => "Category Added Successfully");
             response(200, $data);
 
