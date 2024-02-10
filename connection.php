@@ -101,9 +101,10 @@ function getUserIP() {
 }
 
 
-function setCategoryID($number){
+function setCategoryID($id){
     // Validate if $number is a positive integer
-    if (is_int($number) && $number > 0) {
+    $number = intval($id);
+    if ($number > 0) {
       $result = sprintf('PC%03d', $number);
       return $result;
     } else {
