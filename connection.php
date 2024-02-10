@@ -39,6 +39,12 @@ header('Access-Control-Max-Age: 86400');
 header("Access-Control-Allow-Headers: *");
 header("Access-Control-Allow-Methods: *");
 
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+  header("HTTP/1.1 200 OK");
+  exit;
+}
+
+
 date_default_timezone_set("Asia/Calcutta");
 
 $conn = new mysqli($servername, $username, $password, $db);
