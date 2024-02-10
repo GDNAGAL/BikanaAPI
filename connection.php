@@ -1,5 +1,5 @@
 <?php
-$type = "TESTDB";   //LIVEDB OR TESTDB OR LOCALDB
+$type = "LOCALDB";   //LIVEDB OR TESTDB OR LOCALDB
 
 if($type == "LOCALDB"){
 
