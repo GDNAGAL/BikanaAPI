@@ -11,7 +11,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $UserID = $LoginUserID;
             $CategoryName = $_POST['CategoryName'];
             $CategoryDesc = $_POST['CategoryDesc'];
-            if($_POST['SmallImage']!=null){
+            if($_FILES['SmallImage']['tmp_name'] != null){
                 $CategoryIcon = $_FILES['SmallImage']['tmp_name'];
                 $encodedCategoryIcon = base64_encode(file_get_contents($CategoryIcon));
             }else{
