@@ -9,11 +9,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		if(verifyToken($matches[1])){
 
             $UserID = $LoginUserID;
-            $CategoryIcon = $_FILES['SmallImage']['tmp_name'];
-            $encodedCategoryIcon = base64_encode(file_get_contents($CategoryIcon));
             $CategoryName = $_POST['CategoryName'];
             $CategoryDesc = $_POST['CategoryDesc'];
-            if($_POST['SmallImage']==null){
+            if($_POST['SmallImage']!=null){
+                $CategoryIcon = $_FILES['SmallImage']['tmp_name'];
+                $encodedCategoryIcon = base64_encode(file_get_contents($CategoryIcon));
+            }else{
                 $encodedCategoryIcon = null;
             }
 
