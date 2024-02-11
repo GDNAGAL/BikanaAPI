@@ -5,7 +5,6 @@ require("../encryption.php");
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
     $headers = getallheaders();
 	if (array_key_exists('Authorization', $headers) && preg_match('/Bearer\s(\S+)/', $headers['Authorization'], $matches)){
-
 		if(verifyToken($matches[1])){
 
             $UserID = $LoginUserID;
