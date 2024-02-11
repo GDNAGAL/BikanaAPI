@@ -14,9 +14,9 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             $CategoryArr = [];
             $CategoryList = mysqli_query($conn, "SELECT pc.ID, pc.SmallImage, pc.CategoryName, pc.CategoryDesc, pc.Created_At, users.Name  FROM `product_category` as pc INNER JOIN users ON users.ID = pc.Created_By");
             while($PCRow = mysqli_fetch_assoc($CategoryList)){
-                $data = explode(',', $PCRow['SmallImage']);
-                $base64Image = 'data:image/ ;base64,' . $PCRow['SmallImage'];
-                $PCRow['SmallImage'] = $base64Image;
+                // $data = explode(',', $PCRow['SmallImage']);
+                // $base64Image = 'data:image/ ;base64,' . $PCRow['SmallImage'];
+                // $PCRow['SmallImage'] = $base64Image;
                 $PCRow['CategoryID'] = setCategoryID($PCRow['ID']);
                 $PCRow['Created_By'] = $PCRow['Name'];
                 unset($PCRow['ID']);
