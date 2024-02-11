@@ -4,7 +4,10 @@ require("../encryption.php");
 
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
     $headers = getallheaders();
-	if (array_key_exists('Authorization', $headers) && preg_match('/Bearer\s(\S+)/', $headers['Authorization'], $matches)){
+    
+    $authorizationHeader = trim($headers['Authorization']);
+
+	if (array_key_exists('Authorization', $headers) && preg_match('/Bearer\s(\S+)/', $authorizationHeader, $matches)){
 		if(verifyToken($matches[1])){
 
             $UserID = $LoginUserID;
@@ -32,7 +35,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
 	}else{
 
-		$data = array ("Message" => "Token Not Found");
+		$data = array ("Message" => "Token Missing");
         response(401, $data);
 
 	}
