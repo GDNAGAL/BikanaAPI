@@ -11,25 +11,18 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 		if(verifyToken($matches[1])){
 
             $UserID = $LoginUserID;
-            $CategoryArr = [];
-            $CategoryList = mysqli_query($conn, "SELECT pc.ID, pc.SmallImage, pc.CategoryName, pc.CategoryDesc, pc.Created_At, users.Name  FROM `product_category` as pc INNER JOIN users ON users.ID = pc.Created_By");
+            $VendorArr = [];
+            $CategoryList = mysqli_query($conn, "SELECT vn.ID, vn.Name as vendorname, Email, Mobile, vn.Created_At, users.Name  FROM `vendor` as vn INNER JOIN users ON users.ID = vn.Created_By");
             while($PCRow = mysqli_fetch_assoc($CategoryList)){
                 
-                if($PCRow['SmallImage'] != NULL){
-                    //genrate image
-                    // $data = explode(',', $PCRow['SmallImage']);
-                    // $base64Image = 'data:image/ ;base64,' . $PCRow['SmallImage'];
-                    // $PCRow['SmallImage'] = $base64Image;
-                }else{
-                    $PCRow['SmallImage'] = NULL;
-                }
-                $PCRow['CategoryID'] = setCodeID($PCRow['ID'],"PC");
+                $PCRow['VendorCode'] = setCodeID($PCRow['ID'],"VN");
                 $PCRow['Created_By'] = $PCRow['Name'];
+                $PCRow['VendorName'] = $PCRow['vendorname'];
                 unset($PCRow['ID']);
                 unset($PCRow['Name']);
-                $CategoryArr[] = $PCRow;
+                $VendorArr[] = $PCRow;
             }
-            $data = array ("ProductCategoryList" => $CategoryArr);
+            $data = array ("VendorList" => $VendorArr);
             response(200, $data);
 
 		}else{
