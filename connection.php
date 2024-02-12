@@ -112,4 +112,21 @@ function setCategoryID($id){
       return "Wrong";
     }
 }
+
+function decodeIDs($string, $ch) {
+  // Remove the specified prefix from the beginning of the string
+  $string = preg_replace('/^' . preg_quote($ch, '/') . '/', '', $string);
+
+  // Remove leading zeros
+  $string = ltrim($string, '0');
+
+  // Find the position of the first digit greater than zero
+  $first_valid_digit_pos = strcspn($string, '123456789');
+
+  // Extract the substring up to the first valid digit
+  $result = substr($string, $first_valid_digit_pos);
+
+  return $result;
+}
+
 ?>
