@@ -101,19 +101,22 @@ function getUserIP() {
 }
 
 
-function setCategoryID($id){
-    // Validate if $number is a positive integer
-    $number = intval($id);
-    if ($number > 0) {
-      $result = sprintf('PC%03d', $number);
+function setCodeID($id, $string) {
+  // Validate if $id is a positive integer
+  $number = intval($id);
+  
+  if ($number > 0) {
+      // Use sprintf to format the string and the number with up to 4 digits
+      $result = sprintf('%s%04d', $string, $number);
       return $result;
-    } else {
+  } else {
       // Handle invalid input
       return "Wrong";
-    }
+  }
 }
 
-function decodeIDs($string, $ch) {
+
+function deCodeID($string, $ch) {
   // Remove the specified prefix from the beginning of the string
   $string = preg_replace('/^' . preg_quote($ch, '/') . '/', '', $string);
 

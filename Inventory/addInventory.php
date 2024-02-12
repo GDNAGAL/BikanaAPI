@@ -11,7 +11,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $UserID = $LoginUserID;
             $ProductName = $_POST['ProductName'];
             $ProductDesc = $_POST['ProductDesc'];
-            $CategoryID = decodeIDs($_POST['CategoryID'], "PC");
+            $CategoryID = deCodeID($_POST['CategoryID'], "PC");
 
 
             mysqli_query($conn, "INSERT INTO `product_inventory`(`ProductName`, `ProductDesc`, `CategoryID`, `Created_By`, `Created_At`, `Modified_At`)  VALUES ('$ProductName','$ProductDesc','$CategoryID','$UserID','$CurrendDateTime','$CurrendDateTime')");

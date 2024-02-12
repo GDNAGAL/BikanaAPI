@@ -23,7 +23,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
                 }else{
                     $PCRow['SmallImage'] = NULL;
                 }
-                $PCRow['CategoryID'] = setCategoryID($PCRow['ID']);
+                $PCRow['InventoryID'] = setCodeID($PCRow['ID'],"PI");
                 $PCRow['Created_By'] = $PCRow['Name'];
                 unset($PCRow['ID']);
                 unset($PCRow['Name']);
