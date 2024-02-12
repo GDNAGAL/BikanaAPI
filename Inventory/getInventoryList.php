@@ -12,10 +12,11 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
             $UserID = $LoginUserID;
             $InventoryArr = [];
-            $InventoryList = mysqli_query($conn, "SELECT pi.ID, ProductName, ProductDesc, pi.Created_At, CategoryName, users.Name FROM `product_inventory` as pi INNER JOIN users ON users.ID = pi.Created_By INNER JOIN product_category ON product_category.ID = pi.CategoryID");
+            $InventoryList = mysqli_query($conn, "SELECT pi.ID,pi.Created_By, ProductName, ProductDesc, pi.Created_At, CategoryName, users.Name FROM `product_inventory` as pi INNER JOIN users ON users.ID = pi.Created_By INNER JOIN product_category ON product_category.ID = pi.CategoryID");
             while($PCRow = mysqli_fetch_assoc($InventoryList)){
                 
                 $PCRow['InventoryID'] = setCodeID($PCRow['ID'],"PI");
+                $PCRow['Created_ByID'] = $PCRow['Created_By'];
                 $PCRow['Created_By'] = $PCRow['Name'];
                 unset($PCRow['ID']);
                 unset($PCRow['Name']);
