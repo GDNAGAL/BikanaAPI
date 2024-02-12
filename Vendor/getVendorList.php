@@ -20,6 +20,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
                 $PCRow['VendorName'] = $PCRow['vendorname'];
                 unset($PCRow['ID']);
                 unset($PCRow['Name']);
+                unset($PCRow['vendorname']);
                 $VendorArr[] = $PCRow;
             }
             $data = array ("VendorList" => $VendorArr);
