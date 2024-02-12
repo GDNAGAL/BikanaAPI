@@ -15,14 +15,6 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             $InventoryList = mysqli_query($conn, "SELECT pi.ID, ProductName, ProductDesc, pi.Created_At, CategoryName, users.Name FROM `product_inventory` as pi INNER JOIN users ON users.ID = pi.Created_By INNER JOIN product_category ON product_category.ID = pi.CategoryID");
             while($PCRow = mysqli_fetch_assoc($InventoryList)){
                 
-                if($PCRow['SmallImage'] != NULL){
-                    //genrate image
-                    // $data = explode(',', $PCRow['SmallImage']);
-                    // $base64Image = 'data:image/ ;base64,' . $PCRow['SmallImage'];
-                    // $PCRow['SmallImage'] = $base64Image;
-                }else{
-                    $PCRow['SmallImage'] = NULL;
-                }
                 $PCRow['InventoryID'] = setCodeID($PCRow['ID'],"PI");
                 $PCRow['Created_By'] = $PCRow['Name'];
                 unset($PCRow['ID']);
