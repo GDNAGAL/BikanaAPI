@@ -11,9 +11,9 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 		if(verifyToken($matches[1])){
 
             $UserID = $LoginUserID;
-            $CategoryArr = [];
-            $CategoryList = mysqli_query($conn, "SELECT pc.ID, pc.SmallImage, pc.CategoryName, pc.CategoryDesc, pc.Created_At, users.Name  FROM `product_category` as pc INNER JOIN users ON users.ID = pc.Created_By");
-            while($PCRow = mysqli_fetch_assoc($CategoryList)){
+            $InventoryArr = [];
+            $InventoryList = mysqli_query($conn, "SELECT pc.ID, pc.SmallImage, pc.CategoryName, pc.CategoryDesc, pc.Created_At, users.Name  FROM `product_category` as pc INNER JOIN users ON users.ID = pc.Created_By");
+            while($PCRow = mysqli_fetch_assoc($InventoryList)){
                 
                 if($PCRow['SmallImage'] != NULL){
                     //genrate image
@@ -27,9 +27,9 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
                 $PCRow['Created_By'] = $PCRow['Name'];
                 unset($PCRow['ID']);
                 unset($PCRow['Name']);
-                $CategoryArr[] = $PCRow;
+                $InventoryArr[] = $PCRow;
             }
-            $data = array ("ProductCategoryList" => $CategoryArr);
+            $data = array ("InventoryList" => $CategoryArr);
             response(200, $data);
 
 		}else{
