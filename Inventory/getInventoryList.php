@@ -12,7 +12,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
             $UserID = $LoginUserID;
             $InventoryArr = [];
-            $InventoryList = mysqli_query($conn, "SELECT pc.ID, pc.SmallImage, pc.CategoryName, pc.CategoryDesc, pc.Created_At, users.Name  FROM `product_category` as pc INNER JOIN users ON users.ID = pc.Created_By");
+            $InventoryList = mysqli_query($conn, "SELECT pi.ID, ProductName, ProductDesc, Created_At, users.Name  FROM `product_inventory` as pi INNER JOIN users ON users.ID = pi.Created_By");
             while($PCRow = mysqli_fetch_assoc($InventoryList)){
                 
                 if($PCRow['SmallImage'] != NULL){
@@ -29,7 +29,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
                 unset($PCRow['Name']);
                 $InventoryArr[] = $PCRow;
             }
-            $data = array ("InventoryList" => $CategoryArr);
+            $data = array ("InventoryList" => $InventoryArr);
             response(200, $data);
 
 		}else{
