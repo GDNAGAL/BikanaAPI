@@ -9,13 +9,19 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		if(verifyToken($matches[1])){
 
             $UserID = $LoginUserID;
+            $InventoryID = deCodeID($_POST['InventoryID'], "PI");
             $ProductName = $_POST['ProductName'];
             $ProductDesc = $_POST['ProductDesc'];
             $CategoryID = deCodeID($_POST['CategoryID'], "PC");
 
+            $VariantTitle = $_POST['VariantTitle'];
+            $UnitID = $_POST['UnitID'];
+            $MRP = $_POST['MRP'];
+            $Price = $_POST['Price'];
 
-            mysqli_query($conn, "INSERT INTO `product_inventory`(`ProductName`, `ProductDesc`, `CategoryID`, `Created_By`, `Created_At`, `Modified_At`)  VALUES ('$ProductName','$ProductDesc','$CategoryID','$UserID','$CurrendDateTime','$CurrendDateTime')");
-            $data = array ("Message" => "Inventory Added Successfully");
+
+            mysqli_query($conn, "INSERT INTO `products`(`ProductName`, `ProductDesc`, `CategoryID`, `InventoryID`, `PinVariant`, `Created_At`, `Modified_At`, `StoreID`)  VALUES ('$ProductName','$ProductDesc','$CategoryID','$InventoryID',null,'$CurrendDateTime','$CurrendDateTime','$UserID')");
+            $data = array ("Message" => "Product Added Successfully");
             response(200, $data);
 
 		}else{
