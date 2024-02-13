@@ -11,7 +11,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $UserID = $LoginUserID;
             $Mobile = $_POST['Mobile'];
 
-            $EmailQ = mysqli_fetch_assoc(mysqli_query($conn, "SELECT Count(Mobile) as ECount FROM `users` WHERE Mobile = '$Mobile'"));
+            $EmailQ = mysqli_fetch_assoc(mysqli_query($conn, "SELECT Count(Mobile) as ECount FROM `users` WHERE Mobile = '$Mobile' OR Username = '$Mobile'"));
             if($EmailQ['ECount']==0){
                 $data = array ("Message" => "Valid Mobile No.");
                 response(200, $data);
