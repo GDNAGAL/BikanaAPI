@@ -11,7 +11,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $UserID = $LoginUserID;
             $InventoryID = deCodeID($_POST['InventoryID'], "PI");
 
-            $checkDuplicateProduct =  mysqli_fetch_assoc(mysqli_query($conn, "SELECT Count(ID) as total FROM `products` WHERE StoreID = $UserID AND InventoryID = '$InventoryID'"));
+            $checkDuplicateProduct =  mysqli_fetch_assoc(mysqli_query($conn, "SELECT Count(ID) as total FROM `products` WHERE StoreID = '$UserID' AND InventoryID = '$InventoryID'"));
 
             if($checkDuplicateProduct['total']==0){
 
