@@ -28,7 +28,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 	}else{
 
-		$data = array ("Status" => "Failed", "Message" => "Incorrect Username And Password", $myusername, $mypassword);
+		$data = array ("Status" => "Failed", "Message" => "Incorrect Username And Password");
 		response(401, $data);
 
 	}
