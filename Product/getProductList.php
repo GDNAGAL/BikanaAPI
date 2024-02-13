@@ -12,10 +12,10 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
             $UserID = $LoginUserID;
             $ProductArr = [];
-            $ProductList = mysqli_query($conn, "SELECT * FROM `products`");
+            $ProductList = mysqli_query($conn, "SELECT products.ID, ProductName, CategoryName, StoreName, StoreID, products.Created_At FROM `products` INNER JOIN vendor_stores ON products.StoreID = vendor_stores.ID INNER JOIN product_category ON products.CategoryID = product_category.ID");
             while($PCRow = mysqli_fetch_assoc($ProductList)){
                 
-                $PCRow['ProductID'] = $PCRow['ID'];
+                $PCRow['ProductID'] = setCodeID($PCRow['ID'],"PD");
                 unset($PCRow['ID']);
                 $ProductArr[] = $PCRow;
             }
