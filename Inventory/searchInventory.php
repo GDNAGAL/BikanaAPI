@@ -22,7 +22,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
                 // $PCRow['Created_ByID'] = $PCRow['Created_By'];
                 // $PCRow['Created_By'] = $PCRow['Name'];
                 // unset($PCRow['ID']);
-                // unset($PCRow['Name']);
+                unset($PCRow['ID']);
                 $InventoryArr[] = $PCRow;
             }
             $data = array ("InventoryList" => $InventoryArr);
