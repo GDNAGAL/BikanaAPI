@@ -12,7 +12,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
             $UserID = $LoginUserID;
             $UNITArr = [];
-            $UNITList = mysqli_query($conn, "SELECT ID, UnitText FROM `Product_units` WHERE isActive = 1");
+            $UNITList = mysqli_query($conn, "SELECT ID, UnitText FROM `product_units` WHERE isActive = 1");
             while($PCRow = mysqli_fetch_assoc($UNITList)){
                 
                 $PCRow['UNITID'] = $PCRow['ID'];
