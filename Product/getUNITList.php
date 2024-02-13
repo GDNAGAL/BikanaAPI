@@ -16,7 +16,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             while($PCRow = mysqli_fetch_assoc($UNITList)){
                 
                 $PCRow['UNITID'] = $PCRow['ID'];
-                unsest($PCRow['ID']);
+                unset($PCRow['ID']);
                 $UNITArr[] = $PCRow;
             }
             $data = array ("UNITList" => $UNITArr);
