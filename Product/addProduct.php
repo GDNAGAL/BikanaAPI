@@ -11,7 +11,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $UserID = $LoginUserID;
             $InventoryID = deCodeID($_POST['InventoryID'], "PI");
 
-            $checkDuplicateProduct =  mysqli_fetch_assoc(mysqli_query($conn, "SELECT Count(ID) as total FROM `products` WHERE StoreID = $UserID"));
+            $checkDuplicateProduct =  mysqli_fetch_assoc(mysqli_query($conn, "SELECT Count(ID) as total FROM `products` WHERE StoreID = $UserID AND InventoryID = '$InventoryID'"));
 
             if($checkDuplicateProduct['total']==0){
 
@@ -30,7 +30,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 mysqli_query($conn, "INSERT INTO `product_variant`(`VariantTitle`, `ProductID`, `UnitID`, `MRP`, `Price`, `AvailableQuantity`, `isActive`)  VALUES ('$VariantTitle','$ProductID','$UnitID','$MRP','$Price','0','1')");
                 $VariantID = mysqli_insert_id($conn);
                 mysqli_query($conn, "UPDATE `products` set `PinVariant`=$VariantID WHERE ID=$ProductID");
-                
+
                 $data = array ("Message" => "Product Added Successfully");
                 response(200, $data);
 
