@@ -20,7 +20,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $Price = $_POST['Price'];
 
 
-            mysqli_query($conn, "INSERT INTO `products`(`ProductName`, `ProductDesc`, `CategoryID`, `InventoryID`, `PinVariant`, `Created_At`, `Modified_At`, `StoreID`)  VALUES ('$ProductName','$ProductDesc','$CategoryID','$InventoryID',null,'$CurrendDateTime','$CurrendDateTime','$UserID')");
+            mysqli_query($conn, "INSERT INTO `products`(`ProductName`, `ProductDesc`, `CategoryID`, `InventoryID`, `PinVariant`, `Created_At`, `Modified_At`, `StoreID`)  VALUES ('$ProductName','$ProductDesc','$CategoryID','$InventoryID','null','$CurrendDateTime','$CurrendDateTime','$UserID')");
             $data = array ("Message" => "Product Added Successfully");
             response(200, $data);
 
