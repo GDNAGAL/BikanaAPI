@@ -24,6 +24,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $VendorID = mysqli_insert_id($conn);
 
             mysqli_query($conn, "INSERT INTO `users`(`Name`, `Mobile`, `Username`, `UsernameEnc`, `PasswordEnc`, `UserGroupID`, `UserStatusID`, `AllowedLogins`) VALUES ('$StoreName','$Mobile',$StoreUserName','$userEnc','$passEnc','2','1','1')");
+            
             $NewUSerID = mysqli_insert_id($conn);
             mysqli_query($conn, "INSERT INTO `vendor_stores`(`ID`, `VendorID`, `StoreName`, `StoreAddress`, `StoreUserName`, `StorePassword`, `StoreStatusID`, `Created_By`, `Created_At`, `Modified_At`) VALUES ('$NewUSerID','$VendorID','$StoreName','$StoreAddress','$StoreUserName','$StorePassword','1','$UserID','$CurrendDateTime','$CurrendDateTime')");
             $data = array ("Message" => "Vendor Added Successfully");
