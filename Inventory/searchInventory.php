@@ -14,8 +14,8 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             $SearchText = $_GET['SearchText'];
             $InventoryArr = [];
             // $InventoryList = mysqli_query($conn, "SELECT pi.ID,pi.Created_By, ProductName, ProductDesc, pi.Created_At, CategoryName, users.Name FROM `product_inventory` as pi INNER JOIN users ON users.ID = pi.Created_By INNER JOIN product_category ON product_category.ID = pi.CategoryID WHERE ProductName LIKE '%$SearchText%'");
-            // $InventoryList = mysqli_query($conn, "SELECT ProductName FROM `product_inventory` as pi INNER JOIN users ON users.ID = pi.Created_By INNER JOIN product_category ON product_category.ID = pi.CategoryID WHERE ProductName LIKE '%$SearchText%'");
-            $InventoryList = mysqli_query($conn, "SELECT ProductName FROM `product_inventory` as pi INNER JOIN users ON users.ID = pi.Created_By INNER JOIN product_category ON product_category.ID = pi.CategoryID WHERE SOUNDEX(ProductName) = SOUNDEX('$SearchText')");
+            $InventoryList = mysqli_query($conn, "SELECT ProductName FROM `product_inventory` as pi INNER JOIN users ON users.ID = pi.Created_By INNER JOIN product_category ON product_category.ID = pi.CategoryID WHERE ProductName LIKE '%$SearchText%'");
+            // $InventoryList = mysqli_query($conn, "SELECT ProductName FROM `product_inventory` as pi INNER JOIN users ON users.ID = pi.Created_By INNER JOIN product_category ON product_category.ID = pi.CategoryID WHERE SOUNDEX(ProductName) = SOUNDEX('$SearchText')");
             while($PCRow = mysqli_fetch_assoc($InventoryList)){
                 
                 // $PCRow['InventoryID'] = setCodeID($PCRow['ID'],"PI");
