@@ -13,7 +13,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
             $checkDuplicateProduct =  mysqli_fetch_assoc(mysqli_query($conn, "SELECT Count(ID) as total FROM `products` WHERE StoreID = '$UserID' AND InventoryID = '$InventoryID'"));
 
-            if($checkDuplicateProduct['total']==0){
+            if($checkDuplicateProduct['total'] == 0){
 
                 $ProductName = $_POST['ProductName'];
                 $ProductDesc = $_POST['ProductDesc'];
@@ -35,7 +35,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 response(200, $data);
 
             }else{
-                $data = array ("Message" => "Product Already Added in Your Store");
+                $data = array ("Message" => "Product Already Added in Your Store".$checkDuplicateProduct['total']);
                 response(401, $data);
             }
                 

@@ -3,8 +3,8 @@ include("connection.php");
 require("encryption.php");
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
-	$myusername = encrypt(mysqli_real_escape_string($conn,$_POST['Username']));
-    $mypassword = encrypt(mysqli_real_escape_string($conn,$_POST['Password'])); 
+	$myusername = md5(mysqli_real_escape_string($conn,$_POST['Username']));
+    $mypassword = md5(mysqli_real_escape_string($conn,$_POST['Password'])); 
 
 
     $result = mysqli_query($conn, "SELECT * FROM `users`  WHERE `UsernameEnc` = '$myusername' AND `PasswordEnc` = '$mypassword' LIMIT 1");
