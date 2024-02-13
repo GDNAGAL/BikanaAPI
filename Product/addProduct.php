@@ -10,30 +10,41 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
             $UserID = $LoginUserID;
             $InventoryID = deCodeID($_POST['InventoryID'], "PI");
-            $ProductName = $_POST['ProductName'];
-            $ProductDesc = $_POST['ProductDesc'];
-            $CategoryID = deCodeID($_POST['CategoryID'], "PC");
 
-            $VariantTitle = $_POST['VariantTitle'];
-            $UnitID = $_POST['UnitID'];
-            $MRP = $_POST['MRP'];
-            $Price = $_POST['Price'];
+            $checkDuplicateProduct =  mysqli_fetch_assoc(mysqli_query($conn, "SELECT Count(ID) as total FROM `products` WHERE StoreID = $UserID"));
 
+            if($checkDuplicateProduct['total']==0){
 
-            mysqli_query($conn, "INSERT INTO `products`(`ProductName`, `ProductDesc`, `CategoryID`, `InventoryID`, `PinVariant`, `Created_At`, `Modified_At`, `StoreID`)  VALUES ('$ProductName','$ProductDesc','$CategoryID','$InventoryID','null','$CurrendDateTime','$CurrendDateTime','$UserID')");
-            $ProductID = mysqli_insert_id($conn);
-            mysqli_query($conn, "INSERT INTO `product_variant`(`VariantTitle`, `ProductID`, `UnitID`, `MRP`, `Price`, `AvailableQuantity`, `isActive`)  VALUES ('$VariantTitle','$ProductID','$UnitID','$MRP','$Price','0','1')");
-            $VariantID = mysqli_insert_id($conn);
-            mysqli_query($conn, "UPDATE `products` set `PinVariant`=$VariantID WHERE ID=$ProductID");
-            $data = array ("Message" => "Product Added Successfully");
-            response(200, $data);
+                $ProductName = $_POST['ProductName'];
+                $ProductDesc = $_POST['ProductDesc'];
+                $CategoryID = deCodeID($_POST['CategoryID'], "PC");
+                
+                $VariantTitle = $_POST['VariantTitle'];
+                $UnitID = $_POST['UnitID'];
+                $MRP = $_POST['MRP'];
+                $Price = $_POST['Price'];
+                
+                
+                mysqli_query($conn, "INSERT INTO `products`(`ProductName`, `ProductDesc`, `CategoryID`, `InventoryID`, `PinVariant`, `Created_At`, `Modified_At`, `StoreID`)  VALUES ('$ProductName','$ProductDesc','$CategoryID','$InventoryID','null','$CurrendDateTime','$CurrendDateTime','$UserID')");
+                $ProductID = mysqli_insert_id($conn);
+                mysqli_query($conn, "INSERT INTO `product_variant`(`VariantTitle`, `ProductID`, `UnitID`, `MRP`, `Price`, `AvailableQuantity`, `isActive`)  VALUES ('$VariantTitle','$ProductID','$UnitID','$MRP','$Price','0','1')");
+                $VariantID = mysqli_insert_id($conn);
+                mysqli_query($conn, "UPDATE `products` set `PinVariant`=$VariantID WHERE ID=$ProductID");
+                
+                $data = array ("Message" => "Product Added Successfully");
+                response(200, $data);
 
-		}else{
+            }else{
+                $data = array ("Message" => "Product Already Added in Your Store");
+                response(401, $data);
+            }
+                
+        }else{
 			
             $data = array ("Message" => "Invalid Token");
             response(401, $data);
 
-		}
+	    }
 
 	}else{
 
