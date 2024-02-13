@@ -11,15 +11,15 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 		if(verifyToken($matches[1])){
 
             $UserID = $LoginUserID;
-            $UNITArr = [];
-            $UNITList = mysqli_query($conn, "SELECT ID, UnitText FROM `product_units` WHERE isActive = 1");
-            while($PCRow = mysqli_fetch_assoc($UNITList)){
+            $ProductArr = [];
+            $ProductList = mysqli_query($conn, "SELECT * FROM `products`");
+            while($PCRow = mysqli_fetch_assoc($ProductList)){
                 
-                $PCRow['UnitID'] = $PCRow['ID'];
+                $PCRow['ProductID'] = $PCRow['ID'];
                 unset($PCRow['ID']);
-                $UNITArr[] = $PCRow;
+                $ProductArr[] = $PCRow;
             }
-            $data = array ("UNITList" => $UNITArr);
+            $data = array ("ProductList" => $ProductArr);
             response(200, $data);
 
 		}else{
