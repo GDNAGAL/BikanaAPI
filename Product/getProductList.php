@@ -19,6 +19,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
                 $PCRow['ProductID'] = setCodeID($PCRow['ID'],"PD");
                 $PCRow['CategoryID'] = setCodeID($PCRow['CategoryID'],"PC");
                 unset($PCRow['ID']);
+                unset($PCRow['InventoryID']);
                 $ProductArr[] = $PCRow;
             }
             $data = array ("ProductList" => $ProductArr);
