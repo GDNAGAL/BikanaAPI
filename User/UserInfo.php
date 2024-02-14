@@ -18,7 +18,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             while($USERPermissionsRow = mysqli_fetch_assoc($USERPermissions)){
                 $PermissionsArr[] = $USERPermissionsRow;
             }
-            $data = array ("Message" => "Success", "User" => $User);
+            $data = array ("Message" => "Success", "User" => $User, "UserPermission" => $PermissionsArr);
             response(200, $data);
 
 		}else{
