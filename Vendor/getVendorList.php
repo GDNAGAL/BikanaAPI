@@ -12,7 +12,8 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
             $UserID = $LoginUserID;
             $VendorArr = [];
-            $CategoryList = mysqli_query($conn, "SELECT vn.ID, vn.Name as vendorname, Email, vn.Mobile, vn.Created_At, users.Name  FROM `vendor` as vn INNER JOIN users ON users.ID = vn.Created_By");
+            // $CategoryList = mysqli_query($conn, "SELECT vn.ID, vn.Name as vendorname, Email, vn.Mobile, vn.Created_At, users.Name  FROM `vendor` as vn INNER JOIN users ON users.ID = vn.Created_By");
+            $CategoryList = mysqli_query($conn, "CALL `getVendorList`()");
             while($PCRow = mysqli_fetch_assoc($CategoryList)){
                 
                 $PCRow['VendorCode'] = setCodeID($PCRow['ID'],"VN");
