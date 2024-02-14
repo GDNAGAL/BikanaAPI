@@ -17,8 +17,12 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             while($PCRow = mysqli_fetch_assoc($RolesList)){
                 $PermissionKey = $PCRow['PermissionKey'];
                 $checkRoleAllow = mysqli_fetch_assoc(mysqli_query($conn, "SELECT Count(PermissionKey) as AP FROM `user_group_permissions` WHERE UserGroupID = '$UserGroupID' AND PermissionKey = '$PermissionKey'"));
-
-                if($checkRoleAllow['AP']==1){
+                $PCRow['isAdministrator'] = false;
+                if($UserID == 1){
+                    $PCRow['isAllowed'] = true;
+                    $PCRow['isAdministrator'] = true;
+                }
+                else if($checkRoleAllow['AP']==1){
                     $PCRow['isAllowed'] = true;
                 }else{
                     $PCRow['isAllowed'] = false;
