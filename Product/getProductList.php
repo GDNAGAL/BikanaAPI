@@ -17,6 +17,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             while($PCRow = mysqli_fetch_assoc($ProductList)){
                 
                 $PCRow['ProductID'] = setCodeID($PCRow['ID'],"PD");
+                $PCRow['CategoryID'] = setCodeID($PCRow['CategoryID'],"PC");
                 unset($PCRow['ID']);
                 $ProductArr[] = $PCRow;
             }
