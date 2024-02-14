@@ -16,6 +16,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             while($PCRow = mysqli_fetch_assoc($InventoryList)){
                 
                 $PCRow['InventoryID'] = setCodeID($PCRow['ID'],"PI");
+                $PCRow['CategoryID'] = setCodeID($PCRow['CategoryID'],"PC");
                 $PCRow['Created_ByID'] = $PCRow['Created_By'];
                 $PCRow['Created_By'] = $PCRow['Name'];
                 unset($PCRow['ID']);
