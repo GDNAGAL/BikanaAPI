@@ -9,7 +9,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		if(verifyToken($matches[1])){
 
             $UserID = $LoginUserID;
-            $User = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM `users` INNER JOIN user_groups ON user_groups.ID = users.UserGroupID WHERE users.ID = '$UserID'"));
+            $User = mysqli_fetch_assoc(mysqli_query($conn, "SELECT users.ID, users.Name, Mobile,UserGroupName,UserGroupID,UserStatusID FROM `users` INNER JOIN user_groups ON user_groups.ID = users.UserGroupID WHERE users.ID = '$UserID'"));
+
             $Permissions = mysqli_query($conn, "SELECT PermissionKey FROM `user_group_permissions` WHERE UserGroupID = $User[UserGroupID]");
             while($PermissionsRow = mysqli_fetch_assoc($Permissions)){
                 $PermissionsArr[] = $PermissionsRow;
