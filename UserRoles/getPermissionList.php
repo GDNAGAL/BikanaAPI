@@ -31,7 +31,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
                 unset($PCRow['ID']);
                 $RolesArr[] = $PCRow;
             }
-            $data = array ("PermissionList" => $RolesArr, $UserGroupID);
+            $data = array ("PermissionList" => $RolesArr);
             response(200, $data);
 
 		}else{
