@@ -13,11 +13,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
             $Permissions = mysqli_query($conn, "SELECT PermissionKey FROM `user_group_permissions` WHERE UserGroupID = $User[UserGroupID]");
             while($PermissionsRow = mysqli_fetch_assoc($Permissions)){
-                $PermissionsArr[] = $PermissionsRow;
+                $PermissionsArr[] = $PermissionsRow['PermissionKey'];
             }
             $USERPermissions = mysqli_query($conn, "SELECT PermissionKey FROM `users_permissions` WHERE UserID = $User[ID]");
             while($USERPermissionsRow = mysqli_fetch_assoc($USERPermissions)){
-                $PermissionsArr[] = $USERPermissionsRow;
+                $PermissionsArr[] = $USERPermissionsRow['PermissionKey'];
             }
             $data = array ("Message" => "Success", "User" => $User, "UserPermission" => $PermissionsArr);
             response(200, $data);
