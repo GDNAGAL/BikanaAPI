@@ -9,13 +9,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		if(verifyToken($matches[1])){
 
             $UserID = $LoginUserID;
-            $ProductName = $_POST['ProductName'];
-            $ProductDesc = $_POST['ProductDesc'];
-            $CategoryID = deCodeID($_POST['CategoryID'], "PC");
+            $UserRoleName = $_POST['UserRoleName'];
 
 
-            mysqli_query($conn, "INSERT INTO `product_inventory`(`ProductName`, `ProductDesc`, `CategoryID`, `Created_By`, `Created_At`, `Modified_At`)  VALUES ('$ProductName','$ProductDesc','$CategoryID','$UserID','$CurrendDateTime','$CurrendDateTime')");
-            $data = array ("Message" => "Inventory Added Successfully");
+            mysqli_query($conn, "INSERT INTO `user_groups`(`UserGroupName`) VALUES ('$UserRoleName')");
+            $data = array ("Message" => "User Role Added Successfully");
             response(200, $data);
 
 		}else{
