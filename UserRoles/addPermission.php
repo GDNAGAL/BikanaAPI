@@ -12,7 +12,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $PermissionKey = $_POST['PermissionKey'];
             $PermissionText = $_POST['PermissionText'];
 
-            $VerifyPermissionKey = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as PCount From `permissions` WHERE PermissionKey = $PermissionKey"));
+            $VerifyPermissionKey = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as PCount From `permissions` WHERE PermissionKey = '$PermissionKey'"));
             if($VerifyPermissionKey['PCount']==0){
                 mysqli_query($conn, "INSERT INTO `permissions`(`PermissionKey`, `PermissionText`) VALUES ('$PermissionKey','$PermissionText')");
                 $data = array ("Message" => "Permission Key Added Successfully");
