@@ -12,18 +12,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $Permission = json_decode($_POST['Permission']);
             $UserGroupID = $_POST['UserGroupID'];
 
-            // $PermissionKey = mysqli_fetch_assoc(mysqli_query($conn, "SELECT PermissionKey as PCount From `permissions` WHERE PermissionKey = '$PermissionKey'"));
-            // if($VerifyPermissionKey['PCount']==0){
-            //     mysqli_query($conn, "INSERT INTO `permissions`(`PermissionKey`, `PermissionText`) VALUES ('$PermissionKey','$PermissionText')");
-            //     $data = array ("Message" => "Permission Key Added Successfully");
-            //     response(200, $data);
-            // }else{
-            //     $data = array ("Message" => "Permission Key Already Exist.");
-            //     response(401, $data);
-            // }
-            foreach ($Permission as $value) {
-                echo $value . "<br>";
+            mysqli_query($conn, "DELETE FROM `user_group_permissions` WHERE UserGroupID= '$UserGroupID'");
+            foreach ($Permission as $PermissionID) {
+                $PermissionKey = mysqli_fetch_assoc(mysqli_query($conn, "SELECT PermissionKey From `permissions` WHERE ID = '$PermissionID'"));
+                if($PermissionKey['PermissionKey']){
+                    $key = $PermissionKey['PermissionKey'];
+                    mysqli_query($conn, "INSERT INTO `user_group_permissions`(`UserGroupID`, `PermissionKey`) VALUES ('$UserGroupID','$key')");
+                }  
             }
+            $data = array ("Message" => "Permissions Updated Successfully");
+            response(200, $data);
 
 		}else{
 			
