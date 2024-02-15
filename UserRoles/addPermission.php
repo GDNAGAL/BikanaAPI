@@ -13,7 +13,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $PermissionText = $_POST['PermissionText'];
 
 
-            mysqli_query($conn, "INSERT INTO `user_groups`(`PermissionKey`, `PermissionText`) VALUES ('$PermissionKey','$PermissionText')");
+            mysqli_query($conn, "INSERT INTO `permissions`(`PermissionKey`, `PermissionText`) VALUES ('$PermissionKey','$PermissionText')");
             $data = array ("Message" => "Permission Key Added Successfully");
             response(200, $data);
 
