@@ -21,7 +21,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             //     $data = array ("Message" => "Permission Key Already Exist.");
             //     response(401, $data);
             // }
-            print_r($Permission);
+            foreach ($Permission as $value) {
+                echo $value . "<br>";
+            }
 
 		}else{
 			
