@@ -11,20 +11,13 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 		if(verifyToken($matches[1])){
 
             $UserID = $LoginUserID;
-            $VendorArr = [];
+            $UserArr = [];
             // $CategoryList = mysqli_query($conn, "SELECT vn.ID, vn.Name as vendorname, Email, vn.Mobile, vn.Created_At, users.Name  FROM `vendor` as vn INNER JOIN users ON users.ID = vn.Created_By");
-            $CategoryList = mysqli_query($conn, "CALL `CRM.getUserList`");
-            while($PCRow = mysqli_fetch_assoc($CategoryList)){
-                
-                $PCRow['VendorCode'] = setCodeID($PCRow['ID'],"VN");
-                $PCRow['Created_By'] = $PCRow['Name'];
-                $PCRow['VendorName'] = $PCRow['vendorname'];
-                unset($PCRow['ID']);
-                unset($PCRow['Name']);
-                unset($PCRow['vendorname']);
-                $VendorArr[] = $PCRow;
+            $UserList = mysqli_query($conn, "CALL `CRM.getUserList`");
+            while($PCRow = mysqli_fetch_assoc($UserList)){
+                $UserArr[] = $PCRow;
             }
-            $data = array ("VendorList" => $VendorArr);
+            $data = array ("UserList" => $UserArr);
             response(200, $data);
 
 		}else{
