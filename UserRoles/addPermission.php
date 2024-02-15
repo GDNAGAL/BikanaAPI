@@ -12,10 +12,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $PermissionKey = $_POST['PermissionKey'];
             $PermissionText = $_POST['PermissionText'];
 
-
-            mysqli_query($conn, "INSERT INTO `permissions`(`PermissionKey`, `PermissionText`) VALUES ('$PermissionKey','$PermissionText')");
-            $data = array ("Message" => "Permission Key Added Successfully");
-            response(200, $data);
+            $VerifyPermissionKey = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as PCount From `permissions` WHERE PermissionKey = $PermissionKey"));
+            if($VerifyPermissionKey['PCount']==0){
+                mysqli_query($conn, "INSERT INTO `permissions`(`PermissionKey`, `PermissionText`) VALUES ('$PermissionKey','$PermissionText')");
+                $data = array ("Message" => "Permission Key Added Successfully");
+                response(200, $data);
+            }else{
+                $data = array ("Message" => "Permission Key Already Exist.");
+                response(401, $data);
+            }
+            
 
 		}else{
 			
