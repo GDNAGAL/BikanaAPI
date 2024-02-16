@@ -19,7 +19,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
             mysqli_query($conn, "INSERT INTO `users`(`Name`, `Mobile`, `Username`, `UsernameEnc`, `PasswordEnc`, `UserGroupID`, `UserStatusID`, `AllowedLogins`) VALUES ('$Name','$Mobile','$Mobile','$userEnc','$passEnc','$UserGroupID','1','1')");
 
-            $data = array ("Message" => "Vendor Added Successfully");
+            $data = array ("Message" => "User Added Successfully");
             response(200, $data);
 
 		}else{
