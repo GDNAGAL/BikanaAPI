@@ -20,6 +20,7 @@ if($type == "LOCALDB"){
 $allowedOrigins = [
   "http://localhost:3000",
   "http://localhost:3000/",
+  "http://192.168.66.190:3000",
   "http://localhost",
   "https://royalplay.live", 
 ];
