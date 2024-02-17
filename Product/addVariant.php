@@ -13,7 +13,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $VariantTitle = $_POST['VariantTitle'];
             $UnitID = $_POST['UnitID'];
             $AvailableQuantity = $_POST['AvailableQuantity'];
-            $AvailableQuantity = ($AvailableQuantity == "") ? NULL : $AvailableQuantity;
+            if($AvailableQuantity == "" || $AvailableQuantity == NULL){
+                $AvailableQuantity = NULL;
+            }
+            // $AvailableQuantity = ($AvailableQuantity == "") ? NULL : $AvailableQuantity;
             $MRP = $_POST['MRP'];
             $Price = $_POST['Price'];
 
