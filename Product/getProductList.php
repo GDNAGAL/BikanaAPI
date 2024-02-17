@@ -13,7 +13,12 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             $UserID = $LoginUserID;
             $ProductArr = [];
             // $ProductList = mysqli_query($conn, "SELECT products.ID, ProductName, CategoryName, StoreName, StoreID, products.Created_At FROM `products` INNER JOIN vendor_stores ON products.StoreID = vendor_stores.ID INNER JOIN product_category ON products.CategoryID = product_category.ID");
-            $ProductList = mysqli_query($conn, "CALL `CRM.getProductsList`($UserID)");
+            if(isset($_GET['ProductID'])){
+                $ProductID = $_GET['ProductID'];
+                $ProductList = mysqli_query($conn, "CALL `CRM.getProductById`($UserID, $ProductID)");
+            }else{
+                $ProductList = mysqli_query($conn, "CALL `CRM.getProductsList`($UserID)");
+            }
             while($PCRow = mysqli_fetch_assoc($ProductList)){
                 
                 $PCRow['ProductID'] = setCodeID($PCRow['ID'],"PD");
