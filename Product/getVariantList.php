@@ -14,7 +14,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             $VariantArr = [];
             $ProductID = deCodeID($_GET['ProductID'],"PD");
 
-            $VariantList = mysqli_query($conn, "SELECT * FROM `product_variant` WHERE ProductID = '$ProductID'");
+            $VariantList = mysqli_query($conn, "SELECT product_variant.*, UnitText FROM `product_variant` INNER JOIN product_units ON product_variant.UnitID = product_units.ID WHERE ProductID = '$ProductID'");
             
             while($PCRow = mysqli_fetch_assoc($VariantList)){
                 
