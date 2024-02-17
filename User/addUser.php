@@ -14,8 +14,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $Mobile = $_POST['Mobile'];
             $Email = $_POST['Email'];
 
-            $userEnc = md5($StoreUserName);
-            $passEnc = md5($StorePassword);
+            $userEnc = md5($Mobile);
+            $passEnc = md5($Mobile);
 
             mysqli_query($conn, "INSERT INTO `users`(`Name`, `Mobile`, `Username`, `UsernameEnc`, `PasswordEnc`, `UserGroupID`, `UserStatusID`, `AllowedLogins`) VALUES ('$Name','$Mobile','$Mobile','$userEnc','$passEnc','$UserGroupID','1','1')");
 
