@@ -14,7 +14,8 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             $ProductArr = [];
             // $ProductList = mysqli_query($conn, "SELECT products.ID, ProductName, CategoryName, StoreName, StoreID, products.Created_At FROM `products` INNER JOIN vendor_stores ON products.StoreID = vendor_stores.ID INNER JOIN product_category ON products.CategoryID = product_category.ID");
             if(isset($_GET['ProductID'])){
-                $ProductID = $_GET['ProductID'];
+                $ProductID = deCodeID($_GET['ProductID'],"PD");
+
                 $ProductList = mysqli_query($conn, "CALL `CRM.getProductById`($UserID, $ProductID)");
             }else{
                 $ProductList = mysqli_query($conn, "CALL `CRM.getProductsList`($UserID)");
