@@ -16,7 +16,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $VariantID = $_POST['VariantID'];
             $Price = $_POST['Price'];
 
-            $updateVariant = mysqli_query($conn, "UPDATE `product_variant` SET `MRP`='$MRP', `Price`='$Price' WHERE ID = '$VariantID' AND ProductID = '$ProductID'");
+            $updateVariant = mysqli_query($conn, "UPDATE `product_variant` SET `MRP`='$MRP', `Price`='$Price', `Modified_At` = '$CurrendDateTime' WHERE ID = '$VariantID' AND ProductID = '$ProductID'");
             
             if($updateVariant){   
                 $data = array ("Message" => "Price Updated Successfully");
