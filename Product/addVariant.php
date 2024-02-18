@@ -21,7 +21,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $Price = $_POST['Price'];
 
             $stmt = mysqli_prepare($conn, "INSERT INTO `product_variant` (`VariantTitle`, `ProductID`, `UnitID`, `MRP`, `Price`, `AvailableQuantity`, `isActive`,`Modified_At`) VALUES (?, ?, ?, ?, ?, ?, '1',?)");
-            mysqli_stmt_bind_param($stmt, "ssssssd", $VariantTitle, $ProductID, $UnitID, $MRP, $Price, $AvailableQuantity,$CurrendDateTime);
+            mysqli_stmt_bind_param($stmt, "sssssss", $VariantTitle, $ProductID, $UnitID, $MRP, $Price, $AvailableQuantity,$CurrendDateTime);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_close($stmt);
 
