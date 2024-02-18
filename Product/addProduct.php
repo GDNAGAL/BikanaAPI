@@ -27,7 +27,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 
                 mysqli_query($conn, "INSERT INTO `products`(`ProductName`, `ProductDesc`, `CategoryID`, `InventoryID`, `PinVariant`, `Created_At`, `Modified_At`, `StoreID`)  VALUES ('$ProductName','$ProductDesc','$CategoryID','$InventoryID','null','$CurrendDateTime','$CurrendDateTime','$UserID')");
                 $ProductID = mysqli_insert_id($conn);
-                mysqli_query($conn, "INSERT INTO `product_variant`(`VariantTitle`, `ProductID`, `UnitID`, `MRP`, `Price`, `AvailableQuantity`, `isActive`)  VALUES ('$VariantTitle','$ProductID','$UnitID','$MRP','$Price','0','1')");
+                mysqli_query($conn, "INSERT INTO `product_variant`(`VariantTitle`, `ProductID`, `UnitID`, `MRP`, `Price`, `AvailableQuantity`, `isActive`, `Modified_At`)  VALUES ('$VariantTitle','$ProductID','$UnitID','$MRP','$Price','0','1','$CurrendDateTime')");
                 $VariantID = mysqli_insert_id($conn);
                 mysqli_query($conn, "UPDATE `products` set `PinVariant`=$VariantID WHERE ID=$ProductID");
 
