@@ -21,7 +21,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             mysqli_query($conn, "INSERT INTO `customers`(`FirstName`, `LastName`, `Username`, `Password`, `Email`, `isEmailVerified`, `Mobile`, `WhatsappMobile`, `isMobileVerified`, `CustomerStatusID`, `Created_At`) VALUES ('$FirstName','$LastName','','','$Email','0','$Mobile','$Mobile','0','1','$CurrendDateTime')");
             $CustomerID = mysqli_insert_id($conn);
 
-            mysqli_query($conn, "INSERT INTO `customers_address`(`CustomerID`, `AddressLine1`, `AddressLine2`, `AreaID`, `ZoneID`, `CityID`, `StateID`, `Mobile`, `Latitude`, `Longitude`) VALUES ('$CustomerID','$AddressLine1','$AddressLine2','$AreaID',NULL,'1','1','$Mobile','','')");
+            mysqli_query($conn, "INSERT INTO `customers_address`(`CustomerID`, `AddressLine1`, `AddressLine2`, `AreaID`, `ZoneID`, `CityID`, `StateID`, `Mobile`, `Latitude`, `Longitude`) VALUES ('$CustomerID','$AddressLine1','$AddressLine2','$AreaID','','1','1','$Mobile','','')");
 
             $data = array ("Message" => "Customer Added Successfully");
             response(200, $data);
