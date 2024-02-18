@@ -18,7 +18,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
             if($Price>$MRP){
                 $data = array ("Message" => "Price Cannot Greater than MRP.");
-                response(200, $data);
+                response(401, $data);
                 exit;
             }
 
