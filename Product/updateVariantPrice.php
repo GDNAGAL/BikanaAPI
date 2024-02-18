@@ -16,6 +16,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $VariantID = $_POST['VariantID'];
             $Price = $_POST['Price'];
 
+            if($Price>$MRP){
+                $data = array ("Message" => "Price Cannot Greater than MRP.");
+                response(200, $data);
+                exit;
+            }
+
             $updateVariant = mysqli_query($conn, "UPDATE `product_variant` SET `MRP`='$MRP', `Price`='$Price', `Modified_At` = '$CurrendDateTime' WHERE ID = '$VariantID' AND ProductID = '$ProductID'");
             
             if($updateVariant){   
