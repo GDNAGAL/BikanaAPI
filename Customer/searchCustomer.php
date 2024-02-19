@@ -17,7 +17,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             $CustomerList = mysqli_query($conn, "SELECT FirstName,LastName,ID,Mobile FROM `customers` WHERE `Mobile` LIKE '%$SearchText%'");
             while($PCRow = mysqli_fetch_assoc($CustomerList)){
                 $CustomerAddress = mysqli_fetch_assoc(mysqli_query($conn, "SELECT AreaID,AddressLine1, FROM `customers_address` WHERE `CustomerID` = '$PCRow[ID]' LIMIT 1"));
-                $PCRow['Address'] = $CustomerAddress;
+                $PCRow['Address'][] = $CustomerAddress;
                 $CustomerArr[] = $PCRow;
             }
             $data = array ("CustomerList" => $CustomerArr);
