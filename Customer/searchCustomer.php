@@ -11,19 +11,10 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 		if(verifyToken($matches[1])){
 
             $UserID = $LoginUserID;
-            $InventoryArr = [];
-            if (strpos($_GET['SearchText'], '-') !== false){
-                $parts = explode('-', $SearchText);
-                $SearID = $parts[0];
-                $SearTex = $parts[1];
-            }else{
-                $SearID = $_GET['SearchText'];
-                $SearTex = $_GET['SearchText'];
-            }
-            $SearchText = $SearTex;
-            $IDinSearch = deCodeID($SearID, "PI");
+            $CustomerArr = [];
+            $SearchText = $_GET['SearchText'];
             // $InventoryList = mysqli_query($conn, "SELECT pi.ID,pi.Created_By, ProductName, ProductDesc, pi.Created_At, CategoryName, users.Name FROM `product_inventory` as pi INNER JOIN users ON users.ID = pi.Created_By INNER JOIN product_category ON product_category.ID = pi.CategoryID WHERE ProductName LIKE '%$SearchText%'");
-            $InventoryList = mysqli_query($conn, "SELECT ProductName, ProductTitle, pi.ID, ProductDesc, pc.ID as CID FROM `product_inventory` as pi INNER JOIN product_category as pc ON pc.ID = pi.CategoryID WHERE ProductName LIKE '%$SearchText%' OR pi.ID LIKE '%$IDinSearch%'");
+            $InventoryList = mysqli_query($conn, "SELECT * FROM `customers` WHERE Mobile LIKE '%$SearchText%'");
             while($PCRow = mysqli_fetch_assoc($InventoryList)){
                 
                 $PCRow['InventoryID'] = setCodeID($PCRow['ID'],"PI");
@@ -33,9 +24,9 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
                 // unset($PCRow['ID']);
                 unset($PCRow['ID']);
                 unset($PCRow['CID']);
-                $InventoryArr[] = $PCRow;
+                $CustomerArr[] = $PCRow;
             }
-            $data = array ("InventoryList" => $InventoryArr);
+            $data = array ("CustomerList" => $InventoryArr);
             response(200, $data);
 
 		}else{
