@@ -16,8 +16,9 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             // $InventoryList = mysqli_query($conn, "SELECT pi.ID,pi.Created_By, ProductName, ProductDesc, pi.Created_At, CategoryName, users.Name FROM `product_inventory` as pi INNER JOIN users ON users.ID = pi.Created_By INNER JOIN product_category ON product_category.ID = pi.CategoryID WHERE ProductName LIKE '%$SearchText%'");
             $CustomerList = mysqli_query($conn, "SELECT * FROM `customers` WHERE `Mobile` LIKE '%$SearchText%'");
             while($PCRow = mysqli_fetch_assoc($CustomerList)){
-                
+                $CustomerAddress = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM `customers_address` WHERE `CustomerID` = '$PCRow[ID]' LIMIT 1"));
                 $CustomerArr[] = $PCRow;
+                $CustomerArr[] = $CustomerAddress;
             }
             $data = array ("CustomerList" => $CustomerArr);
             response(200, $data);
