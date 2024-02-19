@@ -18,7 +18,9 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             while($PCRow = mysqli_fetch_assoc($CustomerList)){
                 $CustomerAddress = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM `customers_address` WHERE `CustomerID` = '$PCRow[ID]' LIMIT 1"));
                 $CustomerArr[] = $PCRow;
-                $CustomerArr[] = $CustomerAddress;
+                if($CustomerAddress){
+                    $CustomerArr[] = $CustomerAddress;
+                }
             }
             $data = array ("CustomerList" => $CustomerArr);
             response(200, $data);
