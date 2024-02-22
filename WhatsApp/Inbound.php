@@ -7,6 +7,7 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
     
     $data = json_decode($jsonPayload, true);   
     if ($data !== null) {
+        file_put_contents("response.txt","ok");
         $entry = $data['entry'][0];
         $changes = $entry['changes'][0];
         $messages = $changes['value']['messages'];
@@ -46,7 +47,7 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
         }
 
        
-        file_put_contents("response.txt",$messageBody);
+        
         
         // Now you can use these variables as needed in your application logic
         // ...
