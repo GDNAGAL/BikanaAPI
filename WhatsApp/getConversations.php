@@ -15,7 +15,9 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
             $ConversationList = mysqli_query($conn, "SELECT * FROM `whatsapp_conversation`");
             while($PCRow = mysqli_fetch_assoc($ConversationList)){
-                $PCRow['UnReadMessageCount'] = 4;
+                $fromorto = $PCRow['wa_id'];
+                $unreadCount = mysqli_fetch_assoc(mysqli_query($conn, "SELECT Count(isRead) as unread FROM `whatsapp_messages` WHERE `isRead`='0' AND `FromOrTo`='$fromorto'"));
+                $PCRow['UnReadMessageCount'] = $unreadCount['unread'];
                 $ConversationArr[] = $PCRow;
             }
             $data = array ("ConversationList" => $ConversationArr);
