@@ -45,6 +45,10 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
                 $messageBody = $message['text']['body'];
                 mysqli_query($conn,"INSERT INTO `whatsapp_messages`(`WhatsappMobile`, `Type`, `FromOrTo`, `WaMID`, `MessageTimeStamp`, `MessageType`, `ContextFrom`, `ContextID`, `isRead`) 
                  VALUES ('$bussiness_number','RECEIVED','$from','$WaMID','$timestamp','$messageType'," . ($contextFrom !== null ? "'$contextFrom'" : "NULL") . "," . ($contextID !== null ? "'$contextID'" : "NULL") . ",0)");
+                $MessageID = mysqli_insert_id($conn);
+                mysqli_query($conn,"INSERT INTO `whatsapp_text_messages`(`MessageID`, `MessageText`)
+                 VALUES ('$MessageID','$messageBody')");
+
             }
 
             
