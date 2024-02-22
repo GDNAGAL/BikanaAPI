@@ -23,7 +23,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
                 if($PCRow['MessageType']=="text"){
                        $M =  mysqli_fetch_assoc(mysqli_query($conn, "SELECT MessageText FROM `whatsapp_text_messages` WHERE MessageID = '$MessageID'"));
-                       $PCRow['text'] = $m['MessageText'];
+                    //    $PCRow['text'] = $m['MessageText'];
+                       $PCRow['text'] = $MessageID;
                 }
                 unset($PCRow['MessageTimeStamp']);
                 $MessagesArr[] = $PCRow;
