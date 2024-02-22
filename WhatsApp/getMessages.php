@@ -29,6 +29,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 unset($PCRow['MessageTimeStamp']);
                 $MessagesArr[] = $PCRow;
             }
+            mysqli_query($conn, "UPDATE `whatsapp_messages` SET `isRead` = '1' WHERE FromOrTo = '$Wa_number'");
             $data = array ("MessagesList" => $MessagesArr);
             response(200, $data);
 
