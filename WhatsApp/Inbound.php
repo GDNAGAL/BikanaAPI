@@ -18,7 +18,7 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
             $wa_id = $contact['wa_id'];
             $profile_Name =  $contact['profile']['name'];
             $CountConversation = mysqli_fetch_assoc(mysqli_query($conn, "SELECT Count(wa_id) FROM `whatsapp_conversation` WHERE wa_id = '$wa_id'"));
-            file_put_contents("response.txt",$CountConversation['wa_id']);
+            file_put_contents("response.txt",$profile_Name);
             if($CountConversation['wa_id']==0){
                 mysqli_query($conn,"INSERT INTO `whatsapp_conversation`(`Bussiness_Number`, `wa_id`, `profile_Name`, `Conversation_Status`, `Created_At`, `Modified_At`)
                  VALUES ('$bussiness_number','$wa_id','$profile_Name','1','$CurrendDateTime','$CurrendDateTime')");
