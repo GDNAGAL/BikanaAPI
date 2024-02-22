@@ -11,12 +11,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		if(verifyToken($matches[1])){
 
             $UserID = $LoginUserID;
-            $Wa_number = $_POST['Number'];
+            $Wa_number = $_POST['WANumber'];
             $MessagesArr = [];
 
             $MessagesList = mysqli_query($conn, "SELECT * FROM `whatsapp_messages` WHERE FromOrTo = '$Wa_number'");
             while($PCRow = mysqli_fetch_assoc($MessagesList)){
-                $PCRow['UnReadMessageCount'] = 4;
                 $MessagesArr[] = $PCRow;
             }
             $data = array ("MessagesList" => $MessagesArr);
