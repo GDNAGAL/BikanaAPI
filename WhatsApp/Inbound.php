@@ -44,7 +44,7 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
             if($messageType == "text"){
                 $messageBody = $message['text']['body'];
                 mysqli_query($conn,"INSERT INTO `whatsapp_messages`(`WhatsappMobile`, `Type`, `FromOrTo`, `WaMID`, `MessageTimeStamp`, `MessageType`, `ContextFrom`, `ContextID`, `isRead`) 
-                 VALUES ('$bussiness_number','RECEIVED','$from','$WaMID','$timestamp','$messageType','$contextFrom','$contextID',0)");
+                 VALUES ('$bussiness_number','RECEIVED','$from','$WaMID','$timestamp','$messageType'," . ($contextFrom !== null ? "'$contextFrom'" : "NULL") . "," . ($contextID !== null ? "'$contextID'" : "NULL") . ",0)");
             }
 
             
