@@ -19,6 +19,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $timestamp = 1645593600; // Replace this with your actual timestamp
                 // Convert timestamp to datetime
                 $PCRow['M_TimeStamp'] = date("Y-m-d H:i:s", $PCRow['MessageTimeStamp']);
+                $MessageID = $PCRow['ID'];
+
+                if($PCRow['MessageType']=="text"){
+                       $M =  mysqli_fetch_assoc(mysqli_query($conn, "SELECT MessageText FROM `whatsapp_text_messages` WHERE MessageID = '$MessageID'"));
+                       $PCRow['text'] = $m['MessageText'];
+                }
                 unset($PCRow['MessageTimeStamp']);
                 $MessagesArr[] = $PCRow;
             }
