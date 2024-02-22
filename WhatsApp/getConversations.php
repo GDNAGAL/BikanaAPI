@@ -13,7 +13,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             $UserID = $LoginUserID;
             $ConversationArr = [];
 
-            $ConversationList = mysqli_query($conn, "SELECT * FROM `whatsapp_conversation`");
+            $ConversationList = mysqli_query($conn, "SELECT * FROM `whatsapp_conversation` ORDER BY `Modified_At` ASC");
             while($PCRow = mysqli_fetch_assoc($ConversationList)){
                 $fromorto = $PCRow['wa_id'];
                 $unreadCount = mysqli_fetch_assoc(mysqli_query($conn, "SELECT Count(isRead) as unread FROM `whatsapp_messages` WHERE `isRead`='0' AND `FromOrTo`='$fromorto'"));
