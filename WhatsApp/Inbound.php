@@ -7,15 +7,15 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
     
     $data = json_decode($jsonPayload, true);   
     if ($data !== null) {
-        file_put_contents("response.txt","ok");
         $entry = $data['entry'][0];
         $changes = $entry['changes'][0];
         $messages = $changes['value']['messages'];
         $contacts = $changes['value']['contacts'];
         $metadata = $changes['value']['metadata'];
         $bussiness_number = $metadata['display_phone_number'];
-
+        
         foreach($contacts as $contact){
+            file_put_contents("response.txt","ok");
             $wa_id = $contact['wa_id'];
             $profile_Name =  $contact['profile']['name'];
             $CountConversation = mysqli_fetch_assoc(mysqli_query($conn, "SELECT Count(wa_id) FROM `whatsapp_conversation` WHERE wa_id = '$wa_id'"));
