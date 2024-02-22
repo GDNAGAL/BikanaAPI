@@ -16,6 +16,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
             $MessagesList = mysqli_query($conn, "SELECT * FROM `whatsapp_messages` WHERE FromOrTo = '$Wa_number'");
             while($PCRow = mysqli_fetch_assoc($MessagesList)){
+                $timestamp = 1645593600; // Replace this with your actual timestamp
+                // Convert timestamp to datetime
+                $PCRow['M_TimeStamp'] = date("Y-m-d H:i:s", $PCRow['MessageTimeStamp']);
+                unset($PCRow['MessageTimeStamp']);
                 $MessagesArr[] = $PCRow;
             }
             $data = array ("MessagesList" => $MessagesArr);
