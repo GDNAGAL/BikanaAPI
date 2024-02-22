@@ -1,4 +1,7 @@
 <?php
+include("../connection.php");
+require("../encryption.php");
+
 if($_SERVER['REQUEST_METHOD']=="GET"){
     echo $_GET['hub_challenge']; //respond back hub_callenge key
     http_response_code(200);
