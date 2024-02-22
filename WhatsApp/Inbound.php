@@ -17,7 +17,7 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
         foreach($contacts as $contact){
             $wa_id = $contact['wa_id'];
             $profile_Name =  $contact['profile']['name'];
-            file_put_contents("response.txt",$profile_Name);
+            file_put_contents("response.txt",$wa_id);
             $CountConversation = mysqli_fetch_assoc(mysqli_query($conn, "SELECT Count(wa_id) FROM `whatsapp_conversation` WHERE wa_id = '$wa_id'"));
             if($CountConversation['wa_id']==0){
                 mysqli_query($conn,"INSERT INTO `whatsapp_conversation`(`Bussiness_Number`, `wa_id`, `profile_Name`, `Conversation_Status`, `Created_At`, `Modified_At`)
