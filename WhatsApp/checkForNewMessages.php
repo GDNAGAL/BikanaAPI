@@ -16,7 +16,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             $CheckNew= mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(isRead) as NewMsg FROM `whatsapp_messages` WHERE isRead = 0"));
             if($CheckNew['NewMsg']==0){
                 $data = array ("Result" => false);
-                response(401, $data);
+                response(200, $data);
             }else{
                 $data = array ("Result" => true);
                 response(200, $data);
