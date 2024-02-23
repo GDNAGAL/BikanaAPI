@@ -54,7 +54,7 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
                 $caption = $message['image']['caption'];
                 $mime_type = $message['image']['mime_type'];
                 $sha256 = $message['image']['sha256'];
-                $iid = $message['image']['iid'];
+                $iid = $message['image']['id'];
 
                 mysqli_query($conn,"INSERT INTO `whatsapp_messages`(`WhatsappMobile`, `Type`, `FromOrTo`, `WaMID`, `MessageTimeStamp`, `MessageType`, `ContextFrom`, `ContextID`, `isRead`) 
                  VALUES ('$bussiness_number','RECEIVED','$from','$WaMID','$timestamp','$messageType'," . ($contextFrom !== null ? "'$contextFrom'" : "NULL") . "," . ($contextID !== null ? "'$contextID'" : "NULL") . ",0)");
