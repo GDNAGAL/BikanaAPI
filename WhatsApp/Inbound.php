@@ -50,6 +50,18 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
                  VALUES ('$MessageID','$messageBody')");
 
             }
+            if($messageType == "image"){
+                $caption = $message['image']['caption'];
+                $mime_type = $message['image']['mime_type'];
+                $sha256 = $message['image']['sha256'];
+                $iid = $message['image']['iid'];
+
+                mysqli_query($conn,"INSERT INTO `whatsapp_messages`(`WhatsappMobile`, `Type`, `FromOrTo`, `WaMID`, `MessageTimeStamp`, `MessageType`, `ContextFrom`, `ContextID`, `isRead`) 
+                 VALUES ('$bussiness_number','RECEIVED','$from','$WaMID','$timestamp','$messageType'," . ($contextFrom !== null ? "'$contextFrom'" : "NULL") . "," . ($contextID !== null ? "'$contextID'" : "NULL") . ",0)");
+                $MessageID = mysqli_insert_id($conn);
+                mysqli_query($conn,"INSERT INTO `whatsapp_image_messages`(`MessageID`, `Caption`, `mime_type`, `sha256`, `iid`)
+                 VALUES ('$MessageID','$caption','$mime_type','$sha256','$iid')");
+            }
 
             
         }
