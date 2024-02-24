@@ -114,7 +114,7 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
                     $curlimage = curl_init();
 
                     curl_setopt_array($curlimage, array(
-                    CURLOPT_URL => 'https://lookaside.fbsbx.com/whatsapp_business/attachments/?mid=784336136950267&ext=1708703682&hash=ATvIqVonYqko-XLWkJ852ytFNHZbZI6XpV8RmUi4sSZFSg',
+                    CURLOPT_URL => $imageUrl,
                     CURLOPT_RETURNTRANSFER => true,
                     CURLOPT_ENCODING => '',
                     CURLOPT_MAXREDIRS => 10,
