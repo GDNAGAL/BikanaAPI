@@ -13,7 +13,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $UserID = $LoginUserID;
             $MediaID = $_POST['MediaID'];
 
-            $MessagesInfo = mysqli_fetch_assoc(mysqli_query($conn, "SELECT Message_Type FROM `whatsapp_messages` WHERE `ID`='$MediaID'"));
+            // $MessagesInfo = mysqli_fetch_assoc(mysqli_query($conn, "SELECT Message_Type FROM `whatsapp_messages` WHERE `ID`='$MediaID'"));
             // if($MessagesInfo['Message_Type']=="image"){
             //     $ImageInfo = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM `whatsapp_image_messages` WHERE `MessageID` = '$MediaID'"));
             //     $ImageID = $ImageInfo['iid'];
@@ -41,7 +41,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 
             // mysqli_query($conn, "UPDATE `whatsapp_messages` SET `isRead` = '1' WHERE FromOrTo = '$Wa_number'");
-            $data = array ("Status" => $MessagesInfo);
+            $data = array ("Status" => "ok");
             response(200, $data);
 
 		}else{
