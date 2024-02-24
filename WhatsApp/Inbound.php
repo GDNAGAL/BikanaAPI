@@ -80,7 +80,7 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
                 ));
 
                 $response = curl_exec($curl);
-
+                $httpStatus = curl_getinfo($curl, CURLINFO_HTTP_CODE);
                 curl_close($curl);
 
                 if ($httpStatus == 200) {
