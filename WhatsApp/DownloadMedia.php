@@ -13,9 +13,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $UserID = $LoginUserID;
             $MediaID = $_POST['MediaID'];
 
-            $MessagesInfo = mysqli_fetch_assoc(mysqli_query($conn, "SELECT Message_Type FROM `whatsapp_messages` WHERE ID = '$MediaID' LIMIT 1"));
+            $MessagesInfo = mysqli_fetch_assoc(mysqli_query($conn, "SELECT Message_Type FROM `whatsapp_messages` WHERE ID = '$MediaID'"));
             if($MessagesInfo['Message_Type']=="image"){
-                $ImageInfo = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM `whatsapp_image_messages` WHERE MessageID = '$MediaID' LIMIT 1"));
+                $ImageInfo = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM `whatsapp_image_messages` WHERE MessageID = '$MediaID'"));
                 $ImageID = $ImageInfo['iid'];
                 // $curl = curl_init();
 
