@@ -17,7 +17,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             if($MessagesInfo['MessageType']=="image"){
                 $ImageInfo = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM `whatsapp_image_messages` WHERE `MessageID` = '$MediaID'"));
                 $ImageID = $ImageInfo['iid'];
-                // $curl = curl_init();
+                $curl = curl_init();
 
                 curl_setopt_array($curl, array(
                     CURLOPT_URL => 'https://graph.facebook.com/v18.0/'.$ImageID,
