@@ -4,7 +4,7 @@ require("../encryption.php");
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $headers = getallheaders();
-    
+    $Barer = "EAAEzKRKZAiY0BOxJo1Gq9JZA9kafrKJjLmaI5RYpxv1yZBbtuR8KNJVRGu43RKH1157ZCG2QJZBrPl7SCQZBuMy3YhZCqBKar3FRJD9oN6QiIGxcY33R5QwrsHprMou1pT8pMNHHdv0QQjFoxDngwUyfveDnsh5Uv4h0gDZAdZBsuocU3fvQE3W3KFZACImCMGJtgR";
     $authorizationHeader = trim($headers['Authorization']);
 
 	if (array_key_exists('Authorization', $headers) && preg_match('/Bearer\s(\S+)/', $authorizationHeader, $matches)){
@@ -29,7 +29,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                     CURLOPT_CUSTOMREQUEST => 'GET',
                     CURLOPT_HTTPHEADER => array(
-                        'Authorization: Bearer EAAEzKRKZAiY0BOxJo1Gq9JZA9kafrKJjLmaI5RYpxv1yZBbtuR8KNJVRGu43RKH1157ZCG2QJZBrPl7SCQZBuMy3YhZCqBKar3FRJD9oN6QiIGxcY33R5QwrsHprMou1pT8pMNHHdv0QQjFoxDngwUyfveDnsh5Uv4h0gDZAdZBsuocU3fvQE3W3KFZACImCMGJtgR',
+                        'Authorization: Bearer '.$Barer,
                     ),
                 ));
 
@@ -77,17 +77,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                     CURLOPT_CUSTOMREQUEST => 'GET',
                     CURLOPT_HTTPHEADER => array(
-                        'Authorization: Bearer EAAEzKRKZAiY0BOxJo1Gq9JZA9kafrKJjLmaI5RYpxv1yZBbtuR8KNJVRGu43RKH1157ZCG2QJZBrPl7SCQZBuMy3YhZCqBKar3FRJD9oN6QiIGxcY33R5QwrsHprMou1pT8pMNHHdv0QQjFoxDngwUyfveDnsh5Uv4h0gDZAdZBsuocU3fvQE3W3KFZACImCMGJtgR'
+                        'Authorization: Bearer '.$Barer
                     ),
                     ));
 
                     $responseimage = curl_exec($curlimage);
                     $httpStatuss = curl_getinfo($curlimage, CURLINFO_HTTP_CODE);
-
-                    // Check for cURL errors
-                    if (curl_errno($curlimage)) {
-                        echo 'Curl error: ' . curl_error($curl);
-                    }
 
                     curl_close($curlimage);
 
