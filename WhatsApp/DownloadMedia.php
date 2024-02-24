@@ -94,14 +94,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
                     // Save the image to the specified directory
                     file_put_contents($filename, $responseimage);
+                    echo $responseimage;
                 }
             }
 
 
 
             // mysqli_query($conn, "UPDATE `whatsapp_messages` SET `isRead` = '1' WHERE FromOrTo = '$Wa_number'");
-            $data = array ("Status" => $imageUrl);
-            response(200, $data);
+            // $data = array ("Status" => $imageUrl);
+            // response(200, $data);
 
 		}else{
 			
