@@ -105,7 +105,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 
             // mysqli_query($conn, "UPDATE `whatsapp_messages` SET `isRead` = '1' WHERE FromOrTo = '$Wa_number'");
-            $data = array ("Status" => $imageUrl);
+            $data = array ("Status" => $responseimage);
             response(200, $data);
 
 		}else{
