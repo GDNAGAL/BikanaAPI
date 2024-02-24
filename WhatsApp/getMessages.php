@@ -33,7 +33,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 }
                 if($PCRow['MessageType']=="image"){
                     $I =  mysqli_fetch_assoc(mysqli_query($conn, "SELECT Caption, image_path FROM `whatsapp_image_messages` WHERE MessageID = '$MessageID'"));
-                    $PCRow['text'] = $I;
+                    $PCRow['image'] = $I;
                  //    $PCRow['text'] = $MessageID;
                 }
                 unset($PCRow['MessageTimeStamp']);
