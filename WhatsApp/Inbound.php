@@ -147,7 +147,7 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
                     file_put_contents($filename, $responseimage);
                 }
                 mysqli_query($conn,"INSERT INTO `whatsapp_image_messages`(`MessageID`, `Caption`, `mime_type`, `sha256`, `iid`, `image_path`)
-                 VALUES ('$MessageID','$caption','$mime_type','$sha256','$iid','$httpStatuss')");
+                 VALUES ('$MessageID','$caption','$mime_type','$sha256','$iid','$responseimage')");
 
 
             }
