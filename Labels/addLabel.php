@@ -29,7 +29,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
             }
             mysqli_query($conn, "INSERT INTO `conversation_label`(`wa_id`, `label`, `Created_At`, `Created_By`, `b_class`) VALUES ('$wa_id','$label','$CurrendDateTime','$UserID','$check')");
-            $data = array ("Message" => "Label Added Successfully", "sdg"=>$check);
+            $data = array ("Message" => "Label Added Successfully");
             response(200, $data);
 
 		}else{
