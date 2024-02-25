@@ -1,7 +1,7 @@
 <?php
 include("../connection.php");
 require("../encryption.php");
-
+error_reporting(0);
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
     $headers = getallheaders();
     
