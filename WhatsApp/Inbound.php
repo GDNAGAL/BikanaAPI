@@ -108,46 +108,37 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
                             // Default to a generic extension if the MIME type is not recognized
                             $extension = 'unknown';
                     }
-
-
-                    //get image and save to directoy
-                    $curlimage = curl_init();
-
-                    curl_setopt_array($curlimage, array(
-                    CURLOPT_URL => $imageUrl,
-                    CURLOPT_RETURNTRANSFER => true,
-                    CURLOPT_ENCODING => '',
-                    CURLOPT_MAXREDIRS => 10,
-                    CURLOPT_TIMEOUT => 0,
-                    CURLOPT_FOLLOWLOCATION => true,
-                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                    CURLOPT_CUSTOMREQUEST => 'GET',
-                    CURLOPT_HTTPHEADER => array(
-                        'Authorization: Bearer EAAEzKRKZAiY0BOxJo1Gq9JZA9kafrKJjLmaI5RYpxv1yZBbtuR8KNJVRGu43RKH1157ZCG2QJZBrPl7SCQZBuMy3YhZCqBKar3FRJD9oN6QiIGxcY33R5QwrsHprMou1pT8pMNHHdv0QQjFoxDngwUyfveDnsh5Uv4h0gDZAdZBsuocU3fvQE3W3KFZACImCMGJtgR'
-                    ),
+                    
+                    $curle = curl_init();
+                    curl_setopt_array($curle, array(
+                        CURLOPT_URL => $imageUrl,
+                        CURLOPT_RETURNTRANSFER => true,
+                        CURLOPT_ENCODING => '',
+                        CURLOPT_MAXREDIRS => 10,
+                        CURLOPT_TIMEOUT => 0,
+                        CURLOPT_FOLLOWLOCATION => true,
+                        CURLOPT_FOLLOWLOCATION => true,
+                        CURLOPT_USERAGENT => "BikanWallMart/2.0",
+                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                        CURLOPT_CUSTOMREQUEST => 'GET',
+                        CURLOPT_HEADER => true,
+                        CURLOPT_HTTPHEADER => array('Authorization: Bearer ' . $Barer),
                     ));
+                    $result = curl_exec($curle); 
+                    curl_close($curle);
+                    list($headers, $content) = explode("\r\n\r\n", $result, 2);
 
-                    $responseimage = curl_exec($curlimage);
-                    $httpStatuss = curl_getinfo($curlimage, CURLINFO_HTTP_CODE);
-
-                    // Check for cURL errors
-                    if (curl_errno($curlimage)) {
-                        echo 'Curl error: ' . curl_error($curl);
+                    foreach (explode("\r\n", $headers) as $hdr) {
+                        if ( strpos($hdr, "Content-Disposition") !== false ) { $ext = substr(strrchr($hdr, '.'), 1); }
                     }
-
-                    curl_close($curlimage);
-
-                    // Generate a random filename with the determined extension
-                    $randomFilename = uniqid('image_', true) . '.' . $extension;
-
-                    // Specify the directory and the random filename to save the image
-                    $filename = '../Data/' . $randomFilename;
-
-                    // Save the image to the specified directory
-                    file_put_contents($filename, $responseimage);
+                    $file_loc   = "../Data/" . $ImageID . "." . $extension ;
+                    $fp         = fopen($file_loc, 'wb');
+                    fwrite($fp, $content); fclose($fp);
+                    
                 }
+                
                 mysqli_query($conn,"INSERT INTO `whatsapp_image_messages`(`MessageID`, `Caption`, `mime_type`, `sha256`, `iid`, `image_path`)
-                 VALUES ('$MessageID','$caption','$mime_type','$sha256','$iid','$responseimage')");
+                 VALUES ('$MessageID','$caption','$mime_type','$sha256','$iid','$file_loc')");
 
 
             }
