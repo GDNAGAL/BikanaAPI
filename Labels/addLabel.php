@@ -11,7 +11,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $UserID = $LoginUserID;
             $wa_id = $_POST['wa_id'];
             $label = $_POST['label'];
-            $b_class = $_POST['bclass'];
+            $bclass = $_POST['bclass'];
 
             $q = mysqli_query($conn,"SELECT * FROM `conversation_label` WHERE wa_id = '$wa_id'");
             $checkforduplicate = mysqli_fetch_assoc($q);
@@ -28,8 +28,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 }
 
             }
-            mysqli_query($conn, "INSERT INTO `conversation_label`(`wa_id`, `label`, `Created_At`, `Created_By`, `b_class`) VALUES ('$wa_id','$label','$CurrendDateTime','$UserID','$b_class')");
-            $data = array ("Message" => "Label Added Successfully", "sdg"=>$b_class);
+            mysqli_query($conn, "INSERT INTO `conversation_label`(`wa_id`, `label`, `Created_At`, `Created_By`, `b_class`) VALUES ('$wa_id','$label','$CurrendDateTime','$UserID','$bclass')");
+            $data = array ("Message" => "Label Added Successfully", "sdg"=>$bclass);
             response(200, $data);
 
 		}else{
