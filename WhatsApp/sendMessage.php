@@ -28,16 +28,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     CURLOPT_FOLLOWLOCATION => true,
                     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                     CURLOPT_CUSTOMREQUEST => 'POST',
-                    CURLOPT_POSTFIELDS =>'{
+                    CURLOPT_POSTFIELDS => '{
                         "messaging_product": "whatsapp",    
                         "recipient_type": "individual",
-                        "to": '.$Wa_ID.'",
+                        "to": "'.$Wa_ID.'",
                         "type": "text",
                         "text": {
                             "preview_url": false,
-                            "body": '.$text.'"
+                            "body": "'.$text.'"
                         }
-                    }',
+                    }',                    
                     CURLOPT_HTTPHEADER => array(
                         'Content-Type: application/json',
                         'Authorization: Bearer EAAEzKRKZAiY0BOxJo1Gq9JZA9kafrKJjLmaI5RYpxv1yZBbtuR8KNJVRGu43RKH1157ZCG2QJZBrPl7SCQZBuMy3YhZCqBKar3FRJD9oN6QiIGxcY33R5QwrsHprMou1pT8pMNHHdv0QQjFoxDngwUyfveDnsh5Uv4h0gDZAdZBsuocU3fvQE3W3KFZACImCMGJtgR',
