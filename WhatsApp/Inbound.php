@@ -144,7 +144,7 @@ function DownloadMedia($mediaID){
         $file_loc   = "../Data/" . $iid . "." . $extension ;
         $fp         = fopen($file_loc, 'wb');
         fwrite($fp, $content); fclose($fp);
-        return "https://groceryapi.royalplay.live/Data/".$iid.".".$extension;
+        return "https://groceryapi.royalplay.live/Data/".$mediaID.".".$extension;
     }
     return null;
 }
