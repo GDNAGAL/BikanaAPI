@@ -58,26 +58,31 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
                 $sha256 = $message['image']['sha256'];
                 $iid = $message['image']['id'];
 
-                $curl = curl_init();
+                if(isset($iid)){
 
-                curl_setopt_array($curl, array(
-                    CURLOPT_URL => 'https://graph.facebook.com/v18.0/'.$iid,
-                    CURLOPT_RETURNTRANSFER => true,
-                    CURLOPT_ENCODING => '',
-                    CURLOPT_MAXREDIRS => 10,
-                    CURLOPT_TIMEOUT => 0,
-                    CURLOPT_FOLLOWLOCATION => true,
-                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                    CURLOPT_CUSTOMREQUEST => 'GET',
-                    CURLOPT_HTTPHEADER => array(
-                        'Authorization: Bearer '.$Barer,
-                    ),
-                ));
+                    $curl = curl_init();
 
-                $response = curl_exec($curl);
-                $httpStatus = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-                curl_close($curl);
-                $imageUrl = $data['url'];
+                    curl_setopt_array($curl, array(
+                        CURLOPT_URL => 'https://graph.facebook.com/v18.0/'.$iid,
+                        CURLOPT_RETURNTRANSFER => true,
+                        CURLOPT_ENCODING => '',
+                        CURLOPT_MAXREDIRS => 10,
+                        CURLOPT_TIMEOUT => 0,
+                        CURLOPT_FOLLOWLOCATION => true,
+                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                        CURLOPT_CUSTOMREQUEST => 'GET',
+                        CURLOPT_HTTPHEADER => array(
+                            'Authorization: Bearer '.$Barer,
+                        ),
+                    ));
+    
+                    $response = curl_exec($curl);
+                    $httpStatus = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+                    curl_close($curl);
+                }else{
+                    $httpStatus = 800;
+                }
+
                 if ($httpStatus == 200) {
                     // Decode JSON response
                     $data = json_decode($response, true);
@@ -135,7 +140,7 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
                 $file_location = "https://groceryapi.royalplay.live/Data/".$iid.".".$extension;
 
                 mysqli_query($conn,"INSERT INTO `whatsapp_image_messages`(`MessageID`, `Caption`, `mime_type`, `sha256`, `iid`, `image_path`)
-                 VALUES ('$MessageID','$caption','$mime_type','$sha256','$iid','$imageUrl')");
+                 VALUES ('$MessageID','$caption','$mime_type','$sha256','$iid','$httpStatus')");
 
 
             }
