@@ -2,15 +2,15 @@
 include("../connection.php");
 require("../encryption.php");
 
-if($_SERVER['REQUEST_METHOD'] == 'GET'){
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $headers = getallheaders();
 	if (array_key_exists('Authorization', $headers) && preg_match('/Bearer\s(\S+)/', $headers['Authorization'], $matches)){
 
 		if(verifyToken($matches[1])){
 
             $UserID = $LoginUserID;
-            $wa_id = $_GET['wa_id'];
-            $label = $_GET['label'];
+            $wa_id = $_POST['wa_id'];
+            $label = $_POST['label'];
 
             $q = mysqli_query($conn,"SELECT * FROM `conversation_label` WHERE wa_id = '$wa_id'");
             $checkforduplicate = mysqli_fetch_assoc($q);
