@@ -66,17 +66,29 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
                 $curl = curl_init();
 
                 curl_setopt_array($curl, array(
-                CURLOPT_URL => 'https://graph.facebook.com/v18.0/'.$iid,
+                // CURLOPT_URL => 'https://graph.facebook.com/v18.0/'.$iid,
+                // CURLOPT_RETURNTRANSFER => true,
+                // CURLOPT_ENCODING => '',
+                // CURLOPT_MAXREDIRS => 10,
+                // CURLOPT_TIMEOUT => 0,
+                // CURLOPT_FOLLOWLOCATION => true,
+                // CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                // CURLOPT_CUSTOMREQUEST => 'GET',
+                // CURLOPT_HTTPHEADER => array(
+                //     'Authorization: Bearer ' . $Barer,
+                // ),
+                CURLOPT_URL => 'https://graph.facebook.com/v18.0/' . $iid,
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,
                 CURLOPT_TIMEOUT => 0,
                 CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_USERAGENT => "BikanWallMart/2.0",
                 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                 CURLOPT_CUSTOMREQUEST => 'GET',
-                CURLOPT_HTTPHEADER => array(
-                    'Authorization: Bearer '.$Barer,
-                ),
+                CURLOPT_HEADER => true,
+                CURLOPT_HTTPHEADER => array('Authorization: Bearer ' . $Barer),
                 ));
 
                 $response = curl_exec($curl);
