@@ -49,7 +49,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $timestamp=time();
                 curl_close($curl);
                 $data = json_decode($response, true);
-                $iid = $data['messages'].['id'];
+                $iid = $data['messages']['id'];
                 mysqli_query($conn,"INSERT INTO `whatsapp_messages`(`WhatsappMobile`, `Type`, `FromOrTo`, `WaMID`, `MessageTimeStamp`, `MessageType`, `ContextFrom`, `ContextID`, `isRead`) 
                 VALUES ('919257567137','SENT','$Wa_ID','$iid','$timestamp','$type','NULL','NULL',0)");
                 $MessageID = mysqli_insert_id($conn);
