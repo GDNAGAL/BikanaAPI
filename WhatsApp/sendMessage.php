@@ -51,7 +51,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 if($httpStatus == 200){
 
                     $data = json_decode($response, true);
-                    print_r($data);
                     $iid = $data['messages'][0]['id'];
                     mysqli_query($conn,"INSERT INTO `whatsapp_messages`(`WhatsappMobile`, `Type`, `FromOrTo`, `WaMID`, `MessageTimeStamp`, `MessageType`, `ContextFrom`, `ContextID`, `isRead`) 
                     VALUES ('919257567137','SENT','$Wa_ID','$iid','$timestamp','$type','NULL','NULL',0)");
