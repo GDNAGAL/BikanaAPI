@@ -66,7 +66,7 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
                 $curl = curl_init();
 
                 curl_setopt_array($curl, array(
-                CURLOPT_URL => 'https://graph.facebook.com/v18.0/436386008955940',
+                CURLOPT_URL => 'https://graph.facebook.com/v18.0/'.$iid,
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_ENCODING => '',
                 CURLOPT_MAXREDIRS => 10,
