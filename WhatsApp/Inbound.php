@@ -1,15 +1,4 @@
 <?php
-
-// $challenge = $_REQUEST['hub_challenge'];
-// $verify_token = $_REQUEST['hub_verify_token'];
-
-// if ($verify_token === 'your_verification_token') {
-//     echo $challenge;
-// } else {
-//     echo 'Invalid verification token';
-// }
-
-
 include("../connection.php");
 require("../encryption.php");
 
@@ -69,30 +58,30 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
                 $sha256 = $message['image']['sha256'];
                 $iid = $message['image']['id'];
 
-                if(isset($iid)){
+                // mysqli_query($conn,"INSERT INTO `whatsapp_messages`(`WhatsappMobile`, `Type`, `FromOrTo`, `WaMID`, `MessageTimeStamp`, `MessageType`, `ContextFrom`, `ContextID`, `isRead`) 
+                //  VALUES ('$bussiness_number','RECEIVED','$from','$WaMID','$timestamp','$messageType'," . ($contextFrom !== null ? "'$contextFrom'" : "NULL") . "," . ($contextID !== null ? "'$contextID'" : "NULL") . ",0)");
+                // $MessageID = mysqli_insert_id($conn);
+                
 
-                    $curl = curl_init();
+                $curl = curl_init();
 
-                    curl_setopt_array($curl, array(
-                        CURLOPT_URL => 'https://graph.facebook.com/v18.0/1504978383391410',
-                        CURLOPT_RETURNTRANSFER => true,
-                        CURLOPT_ENCODING => '',
-                        CURLOPT_MAXREDIRS => 10,
-                        CURLOPT_TIMEOUT => 0,
-                        CURLOPT_FOLLOWLOCATION => true,
-                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                        CURLOPT_CUSTOMREQUEST => 'GET',
-                        CURLOPT_HTTPHEADER => array(
-                            'Authorization: Bearer '.$Barer,
-                        ),
-                    ));
-    
-                    $response = curl_exec($curl);
-                    $httpStatus = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-                    curl_close($curl);
-                }else{
-                    $httpStatus = 800;
-                }
+                curl_setopt_array($curl, array(
+                CURLOPT_URL => 'https://graph.facebook.com/v18.0/784336136950267',
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'GET',
+                CURLOPT_HTTPHEADER => array(
+                    'Authorization: Bearer EAAEzKRKZAiY0BOxJo1Gq9JZA9kafrKJjLmaI5RYpxv1yZBbtuR8KNJVRGu43RKH1157ZCG2QJZBrPl7SCQZBuMy3YhZCqBKar3FRJD9oN6QiIGxcY33R5QwrsHprMou1pT8pMNHHdv0QQjFoxDngwUyfveDnsh5Uv4h0gDZAdZBsuocU3fvQE3W3KFZACImCMGJtgR',
+                ),
+                ));
+
+                $response = curl_exec($curl);
+                $httpStatus = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+                curl_close($curl);
 
                 if ($httpStatus == 200) {
                     // Decode JSON response
