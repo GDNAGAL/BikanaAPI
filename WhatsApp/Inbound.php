@@ -1,4 +1,15 @@
 <?php
+
+// $challenge = $_REQUEST['hub_challenge'];
+// $verify_token = $_REQUEST['hub_verify_token'];
+
+// if ($verify_token === 'your_verification_token') {
+//     echo $challenge;
+// } else {
+//     echo 'Invalid verification token';
+// }
+
+
 include("../connection.php");
 require("../encryption.php");
 
@@ -63,7 +74,7 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
                     $curl = curl_init();
 
                     curl_setopt_array($curl, array(
-                        CURLOPT_URL => 'https://graph.facebook.com/v18.0/'.$iid,
+                        CURLOPT_URL => 'https://graph.facebook.com/v18.0/1504978383391410',
                         CURLOPT_RETURNTRANSFER => true,
                         CURLOPT_ENCODING => '',
                         CURLOPT_MAXREDIRS => 10,
