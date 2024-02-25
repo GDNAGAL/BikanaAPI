@@ -122,7 +122,7 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
                         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                         CURLOPT_CUSTOMREQUEST => 'GET',
                         CURLOPT_HEADER => true,
-                        CURLOPT_HTTPHEADER => array('Authorization: Bearer ' . $Barer),
+                        CURLOPT_HTTPHEADER => array('Authorization: Bearer EAAEzKRKZAiY0BOxJo1Gq9JZA9kafrKJjLmaI5RYpxv1yZBbtuR8KNJVRGu43RKH1157ZCG2QJZBrPl7SCQZBuMy3YhZCqBKar3FRJD9oN6QiIGxcY33R5QwrsHprMou1pT8pMNHHdv0QQjFoxDngwUyfveDnsh5Uv4h0gDZAdZBsuocU3fvQE3W3KFZACImCMGJtgR'),
                     ));
                     $result = curl_exec($curle); 
                     curl_close($curle);
