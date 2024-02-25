@@ -141,7 +141,7 @@ function DownloadMedia($mediaID){
         foreach (explode("\r\n", $headers) as $hdr) {
             if ( strpos($hdr, "Content-Disposition") !== false ) { $ext = substr(strrchr($hdr, '.'), 1); }
         }
-        $file_loc   = "../Data/" . $iid . "." . $extension ;
+        $file_loc   = "../Data/" . $mediaID . "." . $extension ;
         $fp         = fopen($file_loc, 'wb');
         fwrite($fp, $content); fclose($fp);
         return "https://groceryapi.royalplay.live/Data/".$mediaID.".".$extension;
