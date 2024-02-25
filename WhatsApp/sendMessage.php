@@ -58,12 +58,17 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     $MessageID = mysqli_insert_id($conn);
                     mysqli_query($conn,"INSERT INTO `whatsapp_text_messages`(`MessageID`, `MessageText`)
                     VALUES ('$MessageID','$text')");
+
+                    $data = array ("Message" => "Message Sent Successfully");
+                    response(200, $data);
+                }else{
+                    $data = array ("Message" => "Message Not Sent");
+                    response(401, $data);
                 }
             }
 
 
-            $data = array ("Message" => "Message Sent Successfully", "Code" => $httpStatus);
-            response(200, $data);
+            
 
 		}else{
 			
