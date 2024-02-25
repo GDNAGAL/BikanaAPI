@@ -77,7 +77,7 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
                 $response = curl_exec($curl);
                 $httpStatus = curl_getinfo($curl, CURLINFO_HTTP_CODE);
                 curl_close($curl);
-
+                $imageUrl = $data['url'];
                 if ($httpStatus == 200) {
                     // Decode JSON response
                     $data = json_decode($response, true);
@@ -135,7 +135,7 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
                 $file_location = "https://groceryapi.royalplay.live/Data/".$iid.".".$extension;
 
                 mysqli_query($conn,"INSERT INTO `whatsapp_image_messages`(`MessageID`, `Caption`, `mime_type`, `sha256`, `iid`, `image_path`)
-                 VALUES ('$MessageID','$caption','$mime_type','$sha256','$iid','$httpStatus')");
+                 VALUES ('$MessageID','$caption','$mime_type','$sha256','$iid','$imageUrl')");
 
 
             }
