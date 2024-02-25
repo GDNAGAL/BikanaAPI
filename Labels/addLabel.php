@@ -22,7 +22,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
                 $hourDifference = $timeDifference->h;
                 if($hourDifference<20){
                     $data = array ("Message" => "Label Already Added");
-                    response(200, $data);
+                    response(401, $data);
                     exit();
                 }
 
