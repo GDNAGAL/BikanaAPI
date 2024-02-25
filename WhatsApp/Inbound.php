@@ -131,12 +131,12 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
                     foreach (explode("\r\n", $headers) as $hdr) {
                         if ( strpos($hdr, "Content-Disposition") !== false ) { $ext = substr(strrchr($hdr, '.'), 1); }
                     }
-                    $file_loc   = "../Data/" . $ImageID . "." . $extension ;
+                    $file_loc   = "../Data/" . $iid . "." . $extension ;
                     $fp         = fopen($file_loc, 'wb');
                     fwrite($fp, $content); fclose($fp);
                     
                 }
-                
+
                 mysqli_query($conn,"INSERT INTO `whatsapp_image_messages`(`MessageID`, `Caption`, `mime_type`, `sha256`, `iid`, `image_path`)
                  VALUES ('$MessageID','$caption','$mime_type','$sha256','$iid','$file_loc')");
 
