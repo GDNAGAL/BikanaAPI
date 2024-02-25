@@ -13,12 +13,12 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
             $label = $_GET['label'];
 
             $q = mysqli_query($conn,"SELECT * FROM `conversation_label` WHERE wa_id = '$wa_id'");
-            $checkforduplicate = mysqli_fetch_assoc($q);
-            $rows = mysqli_num_rows($q);
+            $checkforduplicate = mysqli_fetch_assoc();
+            $rows = mysqli_num_rows($checkforduplicate);
             if($rows>0){
                 $lastinsert = new DateTime($checkforduplicate['Created_At']);
                 $currentTime = new DateTime();
-                $timeDifference = $givenTime->diff($currentTime);
+                $timeDifference = $lastinsert->diff($currentTime);
                 $hourDifference = $timeDifference->h;
                 if($hourDifference<20){
                     $data = array ("Message" => "Label Already Added");
