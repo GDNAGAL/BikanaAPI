@@ -9,8 +9,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		if(verifyToken($matches[1])){
 
             $UserID = $LoginUserID;
-            $check = $_POST['Check'];
-            $bclass = $_POST['bclass'];
+            $check = $_POST['bcc'];
             $wa_id = $_POST['wa_id'];
             $label = $_POST['label'];
 
@@ -29,7 +28,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 }
 
             }
-            mysqli_query($conn, "INSERT INTO `conversation_label`(`wa_id`, `label`, `Created_At`, `Created_By`, `b_class`) VALUES ('$wa_id','$label','$CurrendDateTime','$UserID','$bclass')");
+            mysqli_query($conn, "INSERT INTO `conversation_label`(`wa_id`, `label`, `Created_At`, `Created_By`, `b_class`) VALUES ('$wa_id','$label','$CurrendDateTime','$UserID','$check')");
             $data = array ("Message" => "Label Added Successfully", "sdg"=>$check);
             response(200, $data);
 
