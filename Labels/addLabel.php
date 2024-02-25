@@ -9,9 +9,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		if(verifyToken($matches[1])){
 
             $UserID = $LoginUserID;
+            $bclass = $_POST['bclass'];
             $wa_id = $_POST['wa_id'];
             $label = $_POST['label'];
-            $bclass = $_POST['bclass'];
 
             $q = mysqli_query($conn,"SELECT * FROM `conversation_label` WHERE wa_id = '$wa_id'");
             $checkforduplicate = mysqli_fetch_assoc($q);
