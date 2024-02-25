@@ -136,9 +136,9 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
                     fwrite($fp, $content); fclose($fp);
                     
                 }
-
+                $file_location = "https://groceryapi.royalplay.live/Data/".$iid.".".$extension;
                 mysqli_query($conn,"INSERT INTO `whatsapp_image_messages`(`MessageID`, `Caption`, `mime_type`, `sha256`, `iid`, `image_path`)
-                 VALUES ('$MessageID','$caption','$mime_type','$sha256','$iid','$file_loc')");
+                 VALUES ('$MessageID','$caption','$mime_type','$sha256','$iid','$file_location')");
 
 
             }
