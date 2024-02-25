@@ -14,7 +14,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
             $q = mysqli_query($conn,"SELECT * FROM `conversation_label` WHERE wa_id = '$wa_id'");
             $checkforduplicate = mysqli_fetch_assoc($q);
-            $rows = mysqli_num_rows($checkforduplicate);
+            $rows = mysqli_num_rows($q);
             if($rows>0){
                 $lastinsert = new DateTime($checkforduplicate['Created_At']);
                 $currentTime = new DateTime();
