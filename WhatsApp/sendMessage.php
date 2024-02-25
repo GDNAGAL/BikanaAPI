@@ -47,18 +47,22 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                 $response = curl_exec($curl);
                 $timestamp=time();
                 curl_close($curl);
-                $data = json_decode($response, true);
-                print_r($data);
-                $iid = $data['messages'][0]['id'];
-                mysqli_query($conn,"INSERT INTO `whatsapp_messages`(`WhatsappMobile`, `Type`, `FromOrTo`, `WaMID`, `MessageTimeStamp`, `MessageType`, `ContextFrom`, `ContextID`, `isRead`) 
-                VALUES ('919257567137','SENT','$Wa_ID','$iid','$timestamp','$type','NULL','NULL',0)");
-                $MessageID = mysqli_insert_id($conn);
-                mysqli_query($conn,"INSERT INTO `whatsapp_text_messages`(`MessageID`, `MessageText`)
-                 VALUES ('$MessageID','$text')");
+                $httpStatus = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+                if($httpStatus == 200){
+
+                    $data = json_decode($response, true);
+                    print_r($data);
+                    $iid = $data['messages'][0]['id'];
+                    mysqli_query($conn,"INSERT INTO `whatsapp_messages`(`WhatsappMobile`, `Type`, `FromOrTo`, `WaMID`, `MessageTimeStamp`, `MessageType`, `ContextFrom`, `ContextID`, `isRead`) 
+                    VALUES ('919257567137','SENT','$Wa_ID','$iid','$timestamp','$type','NULL','NULL',0)");
+                    $MessageID = mysqli_insert_id($conn);
+                    mysqli_query($conn,"INSERT INTO `whatsapp_text_messages`(`MessageID`, `MessageText`)
+                    VALUES ('$MessageID','$text')");
+                }
             }
 
 
-            $data = array ("Message" => "Message Sent Successfully");
+            $data = array ("Message" => "Message Sent Successfully", "Code" => $httpStatus);
             response(200, $data);
 
 		}else{
