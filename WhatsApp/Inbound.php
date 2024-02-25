@@ -127,7 +127,7 @@ if($_SERVER['REQUEST_METHOD']=="GET"){
                     $result = curl_exec($curle); 
                     curl_close($curle);
                     list($headers, $content) = explode("\r\n\r\n", $result, 2);
-
+        
                     foreach (explode("\r\n", $headers) as $hdr) {
                         if ( strpos($hdr, "Content-Disposition") !== false ) { $ext = substr(strrchr($hdr, '.'), 1); }
                     }
