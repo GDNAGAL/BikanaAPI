@@ -41,7 +41,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     CURLOPT_HTTPHEADER => array(
                         'Content-Type: application/json',
                         'Authorization: Bearer EAAEzKRKZAiY0BOxJo1Gq9JZA9kafrKJjLmaI5RYpxv1yZBbtuR8KNJVRGu43RKH1157ZCG2QJZBrPl7SCQZBuMy3YhZCqBKar3FRJD9oN6QiIGxcY33R5QwrsHprMou1pT8pMNHHdv0QQjFoxDngwUyfveDnsh5Uv4h0gDZAdZBsuocU3fvQE3W3KFZACImCMGJtgR',
-                        'Cookie: ps_l=0; ps_n=0'
                     ),
                 ));
                 
