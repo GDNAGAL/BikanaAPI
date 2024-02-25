@@ -20,6 +20,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
                 $label = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM `conversation_label` WHERE `wa_id`='$fromorto' LIMIT 1"));
                 $PCRow['UnReadMessageCount'] = $unreadCount['unread'];
                 $PCRow['Label'] = $label['label'];
+                $PCRow['Label_B_Class'] = $label['b_class'];
                 $ConversationArr[] = $PCRow;
             }
             $data = array ("ConversationList" => $ConversationArr);
