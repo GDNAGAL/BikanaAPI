@@ -14,7 +14,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $VariantArr = [];
             $ProductID = $_POST['ProductID'];
 
-            $VariantList = mysqli_query($conn, "SELECT product_variant.*, UnitText FROM `product_variant` INNER JOIN product_units ON product_variant.UnitID = product_units.ID WHERE product_variant.ID = '$ProductID'");
+            $VariantList = mysqli_query($conn, "SELECT product_variant.*, UnitText FROM `product_variant` INNER JOIN product_units ON product_variant.UnitID = product_units.ID WHERE ProductID = '$ProductID'");
             if(mysqli_num_rows($VariantList)==0){
                 $data = array ("Message" => "Product Not Found");
                 response(404, $data);
