@@ -15,13 +15,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $ProductID = $_POST['ProductID'];
 
             $VariantList = mysqli_query($conn, "SELECT product_variant.*, UnitText FROM `product_variant` INNER JOIN product_units ON product_variant.UnitID = product_units.ID WHERE product_variant.ID = '$ProductID'");
-            
+            if(mysqli_num_rows($VariantList)==0){
+                $data = array ("Message" => "Product Not Found");
+                response(404, $data);
+                exit;
+            }
             while($PCRow = mysqli_fetch_assoc($VariantList)){
-                
-                // $PCRow['ProductID'] = setCodeID($PCRow['ID'],"PD");
-                // $PCRow['CategoryID'] = setCodeID($PCRow['CategoryID'],"PC");
-                // unset($PCRow['ID']);
-                // unset($PCRow['InventoryID']);
                 $VariantArr[] = $PCRow;
             }
             $data = array ("Product" => $VariantArr);
